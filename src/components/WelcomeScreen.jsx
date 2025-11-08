@@ -1,7 +1,7 @@
 import React from 'react';
 import ganesha from '../assets/images/ganesha.webp';
 import couplePhoto from '../assets/images/shanu4.webp';
-import marigold from '../assets/images/marigold.png';
+import marigold from '../assets/images/marigold.webp';
 import CherryBlossom from './CherryBlossom';
 
 const WelcomeScreen = ({ onOpen }) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FloralDivider from '../components/FloralDivider';
@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const PeopleSection = () => {
   const sectionRef = useRef(null);
   const groupRefs = useRef([]);
+  const [sonalTapCount, setSonalTapCount] = useState(0);
   const peopleGroups = [
     {
       title: 'विनीत',
@@ -42,7 +43,7 @@ const PeopleSection = () => {
     {
       title: 'प्रतिक्षारत',
       people: [
-        'सुश्री धवल गोड़, कपित गौड़',
+        'सुश्री धवल गोड़, कल्पित गौड़',
         'श्रीमती श्यामा - श्री हरीश जी शर्मा',
         'सौरभ, राघव',
       ],
@@ -54,6 +55,17 @@ const PeopleSection = () => {
         'प्रदीप - सुनीता गौड़',
         'हर्षित - दिव्या गौड़',
         'यश - शुभांगी गौड़',
+      ],
+    },
+    {
+      title: 'ननिहाल पक्ष',
+      people: [
+        'श्रीमती कमलाबाई - श्री मोहनलालजी गौड़',
+        'श्री राधेश्यामजी गौड़ (रतलाम)',
+        'श्री उमाशंकरजी - श्रीमती रानी शर्मा',
+        'श्रीमती मयंका - दिनेशजी',
+        'श्रीमती भारती - सचिन शर्मा',
+        'श्री श्यामजी गौड़, SONAL_EASTER_EGG, कशिश, सक्षम',
       ],
     },
   ];
@@ -132,15 +144,38 @@ const PeopleSection = () => {
 
               {/* People List */}
               <div className="space-y-2">
-                {group.people.map((person, personIndex) => (
-                  <div
-                    key={personIndex}
-                    className="text-center text-lg"
-                    style={{ color: '#FFFFFF' }}
-                  >
-                    {person}
-                  </div>
-                ))}
+                {group.people.map((person, personIndex) => {
+                  // Check if this person entry contains the easter egg
+                  if (person.includes('SONAL_EASTER_EGG')) {
+                    const parts = person.split('SONAL_EASTER_EGG');
+                    return (
+                      <div
+                        key={personIndex}
+                        className="text-center text-lg"
+                        style={{ color: '#FFFFFF' }}
+                      >
+                        {parts[0]}
+                        <span
+                          onClick={() => setSonalTapCount(prev => prev + 1)}
+                          style={{ cursor: 'pointer', userSelect: 'none' }}
+                        >
+                          {sonalTapCount >= 5 ? '💩' : 'सोनल'}
+                        </span>
+                        {parts[1]}
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <div
+                      key={personIndex}
+                      className="text-center text-lg"
+                      style={{ color: '#FFFFFF' }}
+                    >
+                      {person}
+                    </div>
+                  );
+                })}
               </div>
             </div>
             {index < peopleGroups.length - 1 && (

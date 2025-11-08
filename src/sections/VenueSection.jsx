@@ -45,7 +45,7 @@ const VenueSection = () => {
   return (
     <div 
       ref={sectionRef}
-      className="w-full pb-16 px-4" 
+      className="w-full pt-8 pb-32 px-4" 
       style={{ backgroundColor: '#FFC300' }}
     >
       {/* Section Heading */}

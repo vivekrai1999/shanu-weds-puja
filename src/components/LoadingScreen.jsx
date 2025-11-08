@@ -11,12 +11,16 @@ const LoadingScreen = ({ onLoadComplete }) => {
       '/src/assets/images/shanu2.webp',
       '/src/assets/images/shanu3.webp',
       '/src/assets/images/shanu4.webp',
+      '/src/assets/images/shanu5.webp',
+      '/src/assets/images/shanu6.webp',
+      '/src/assets/images/shanu7.webp',
+      '/src/assets/images/shanu8.webp',
       '/src/assets/images/frame-left.webp',
       '/src/assets/images/frame-right.webp',
       '/src/assets/images/women-left.webp',
       '/src/assets/images/women-right.webp',
       '/src/assets/images/ganesha.webp',
-      '/src/assets/images/marigold.png',
+      '/src/assets/images/marigold.webp',
       // SVGs
       '/src/assets/svgs/mandala.svg',
       // Audio

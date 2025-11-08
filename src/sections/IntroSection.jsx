@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import shanu1 from '../assets/images/shanu1.webp';
 import ganesha from '../assets/images/ganesha.webp';
-import marigold from '../assets/images/marigold.png';
+import marigold from '../assets/images/marigold.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
