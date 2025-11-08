@@ -7,6 +7,7 @@ import EventsSection from './EventsSection'
 import VenueSection from './VenueSection'
 import TasvireSection from './TasvireSection'
 import BaalManuhaarSection from './BaalManuhaarSection'
+import EmptySection from './EmptySection'
 import WaveSeparator from '../components/WaveSeprator'
 import WaveSeparatorLayered from '../components/WaveSeparatorLayered'
 import WaveSeparatorFlipped from '../components/WaveSeparatorFlipped'
@@ -84,11 +85,15 @@ function MainPage() {
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFC300" />
       </div>
-      <BaalManuhaarSection />
+      <EmptySection />
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#DC3545" />
       </div>
       <PeopleLayout/>
+      <div className="-mt-14 relative z-20">
+        <WaveSeparator color="#FFC300" />
+      </div>
+      <BaalManuhaarSection />
     </div>
   </>
   )

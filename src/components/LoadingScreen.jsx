@@ -24,7 +24,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
       // SVGs
       '/src/assets/svgs/mandala.svg',
       // Audio
-      '/src/assets/audio/pure-love-304010.mp3',
+      '/src/assets/audio/audio.mp3',
     ];
 
     let loadedCount = 0;
