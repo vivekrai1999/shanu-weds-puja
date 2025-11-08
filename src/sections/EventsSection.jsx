@@ -48,13 +48,13 @@ const EventsSection = () => {
       date: '1 दिसम्बर 2025',
       items: [
         { time: 'प्रातः 11:00 बजे', name: 'मामेरा (भात)', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
-        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह/माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
+        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह/fixमाधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
       ],
     },
   ];
 
   return (
-    <div className="w-full py-12 px-4" style={{ backgroundColor: '#E0115F' }}>
+    <div className="w-full py-12" style={{ backgroundColor: '#E0115F' }}>
       {/* Section Heading */}
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl text-white mb-8">
@@ -72,7 +72,7 @@ const EventsSection = () => {
             {index % 2 === 0 ? (
               <>
                 {/* Event Content - 70% width, text left aligned */}
-                <div className="w-[70%] text-left">
+                <div className="w-[70%] text-left pl-8 md:pl-12">
                   {/* Day - Date Row */}
                   <div className="mb-4">
                     <h3 className="text-2xl text-white">
@@ -208,7 +208,7 @@ const EventsSection = () => {
                 </div>
 
                 {/* Event Content - 70% width, text right aligned */}
-                <div className="w-[70%] text-right">
+                <div className="w-[70%] text-right pr-8 md:pr-12">
                   {/* Day - Date Row */}
                   <div className="mb-4">
                     <h3 className="text-2xl text-white">
