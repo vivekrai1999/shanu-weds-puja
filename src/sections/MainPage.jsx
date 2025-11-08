@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import IntroSection from './IntroSection'
 import HeroLayout from '../layouts/HeroLayout'
 import EventsLayout from '../layouts/EventsLayout'
@@ -7,10 +7,19 @@ import EventsSection from './EventsSection'
 import WaveSeparator from '../components/WaveSeprator'
 import WaveSeparatorLayered from '../components/WaveSeparatorLayered'
 import WaveSeparatorFlipped from '../components/WaveSeparatorFlipped'
+import MusicPlayer from '../components/MusicPlayer'
+import LoadingScreen from '../components/LoadingScreen'
 
 function MainPage() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  if (!isLoaded) {
+    return <LoadingScreen onLoadComplete={() => setIsLoaded(true)} />;
+  }
+
   return (
   <>
+    <MusicPlayer />
     <IntroSection />
     <div className="-mt-14 relative z-20">
     <WaveSeparator color="#FFFFFF" />

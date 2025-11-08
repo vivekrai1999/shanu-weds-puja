@@ -79,7 +79,7 @@ const PeopleSection = () => {
             </div>
             {index < peopleGroups.length - 1 && (
               <div className="w-full flex justify-center my-6">
-                <FloralDivider color="#8B4513" height={40} />
+                <FloralDivider color="#E0115F" height={50} />
               </div>
             )}
           </React.Fragment>

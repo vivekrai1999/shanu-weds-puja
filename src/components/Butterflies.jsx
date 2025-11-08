@@ -1,42 +1,55 @@
 import React, { useEffect, useRef } from 'react';
 
-const Butterflies = () => {
+const Butterflies = ({ minY = 0, maxY = 200, count = 5 }) => {
   const containerRef = useRef(null);
   const butterfliesRef = useRef([]);
 
   useEffect(() => {
+    // Find the parent container
+    const container = document.querySelector('.butterfly-container');
+    if (!container) {
+      console.error('Butterfly container not found');
+      return;
+    }
+
+    const colors = ['#E0115F', '#FFC300', '#FF1493', '#FFD700', '#FF69B4', '#FFA500', '#DC143C'];
+
     class Butterfly {
-      constructor(container) {
-        this.container = container;
-        this.x = Math.floor(Math.random() * container.offsetWidth);
-        this.y = Math.floor(Math.random() * 200); // Keep them in bottom area
+      constructor(index) {
+        const containerWidth = container.offsetWidth;
+        const containerHeight = maxY;
+        
+        // Random position within container
+        this.x = Math.floor(Math.random() * (containerWidth - 100)) + 50;
+        this.y = Math.floor(Math.random() * (containerHeight - 50)) + minY;
+        
+        this.minY = minY;
+        this.maxY = containerHeight - 20;
+        this.minX = 0;
+        this.maxX = containerWidth - 80;
         this.directionX = Math.random() > 0.5;
         this.directionY = Math.random() > 0.5;
         this.domElement = null;
+        this.speed = 0.3 + Math.random() * 0.3;
+        this.container = container;
+        this.color = colors[index % colors.length];
         this.init();
       }
 
       init() {
         this.domElement = document.createElement('div');
-        this.domElement.className = 'butterfly';
-        this.domElement.innerHTML = `
-          <div class="left-wing">
-            <div class="top"></div>
-            <div class="bottom"></div>
-          </div>
-          <div class="right-wing">
-            <div class="top"></div>
-            <div class="bottom"></div>
-          </div>
-        `;
+        this.domElement.className = 'butterfly butterfly-small';
+        this.domElement.style.left = '0px';
+        this.domElement.style.top = '0px';
+        this.domElement.innerHTML = `<div class="left-wing"><div class="top" style="background: ${this.color}; box-shadow: 0 2px 6px ${this.color}40;"></div><div class="bottom" style="background: ${this.color}; box-shadow: 0 2px 6px ${this.color}40;"></div></div><div class="right-wing"><div class="top" style="background: ${this.color}; box-shadow: 0 2px 6px ${this.color}40;"></div><div class="bottom" style="background: ${this.color}; box-shadow: 0 2px 6px ${this.color}40;"></div></div>`;
         this.container.appendChild(this.domElement);
       }
 
       moveButterfly() {
-        if (!this.domElement || !this.container) return;
+        if (!this.domElement) return;
 
         this.domElement.style.transform = `translate3D(${this.x}px, ${this.y}px, 0px) rotate3d(1, 0.5, 0, 110deg)`;
-
+        
         const randomnumberX = Math.floor(Math.random() * 11);
         const randomnumberY = Math.floor(Math.random() * 11);
 
@@ -48,14 +61,40 @@ const Butterflies = () => {
           this.directionY = !this.directionY;
         }
 
-        this.x += this.directionX ? 1 : -1;
-        this.y += this.directionY ? 1 : -1;
+        if (this.directionX) {
+          this.x += this.speed;
+        } else {
+          this.x -= this.speed;
+        }
 
-        // Keep butterflies within bounds
-        if (this.x < 0) this.x = 0;
-        if (this.x > this.container.offsetWidth) this.x = this.container.offsetWidth;
-        if (this.y < 0) this.y = 0;
-        if (this.y > 200) this.y = 200;
+        if (this.directionY) {
+          this.y += this.speed;
+        } else {
+          this.y -= this.speed;
+        }
+
+        // Update maxX based on container width
+        const containerWidth = this.container.offsetWidth;
+        this.maxX = containerWidth - 80;
+
+        // Keep within bounds
+        if (this.x < this.minX) {
+          this.x = this.minX;
+          this.directionX = true;
+        }
+        if (this.x > this.maxX) {
+          this.x = this.maxX;
+          this.directionX = false;
+        }
+
+        if (this.y < this.minY) {
+          this.y = this.minY;
+          this.directionY = true;
+        }
+        if (this.y > this.maxY) {
+          this.y = this.maxY;
+          this.directionY = false;
+        }
       }
 
       destroy() {
@@ -73,14 +112,11 @@ const Butterflies = () => {
     let animationFrameId;
 
     const initTimeout = setTimeout(() => {
-      if (containerRef.current) {
-        // Create 3 butterflies
-        for (let i = 0; i < 3; i++) {
-          const butterfly = new Butterfly(containerRef.current);
-          butterfliesRef.current.push(butterfly);
-        }
-        animate();
+      for (let i = 0; i < count; i++) {
+        const butterfly = new Butterfly(i);
+        butterfliesRef.current.push(butterfly);
       }
+      animate();
     }, 500);
 
     return () => {
@@ -91,25 +127,9 @@ const Butterflies = () => {
       butterfliesRef.current.forEach(butterfly => butterfly.destroy());
       butterfliesRef.current = [];
     };
-  }, []);
+  }, [minY, maxY, count]);
 
-  return (
-    <div 
-      ref={containerRef} 
-      className="butterfly-container"
-      style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '200px',
-        pointerEvents: 'none',
-        overflow: 'hidden',
-        zIndex: 50
-      }}
-    />
-  );
+  return null;
 };
 
 export default Butterflies;
-

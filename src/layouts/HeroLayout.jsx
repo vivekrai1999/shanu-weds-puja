@@ -7,7 +7,9 @@ import ganesha from '../assets/images/ganesha.webp';
 import BloomingFlower from '../components/BloomingFlower';
 import CherryBlossom from '../components/CherryBlossom';
 import FlowerGarden from '../components/FlowerGarden';
+import Butterflies from '../components/Butterflies';
 import '../styles/bloomingFlower.css';
+import '../styles/butterfly.css';
 
 const HeroLayout= ({
   topLeft,
@@ -20,9 +22,10 @@ const HeroLayout= ({
   bottomCenter,
   bottomRight,
 }) => {
+
   return (
     <div 
-      className="w-full h-screen relative overflow-hidden bg-white"
+      className="hero-layout-section w-full h-screen relative overflow-hidden bg-white"
     >
       {/* Cherry Blossom Effect */}
       <CherryBlossom />
@@ -93,6 +96,11 @@ const HeroLayout= ({
 
       {/* Flower Garden at bottom center */}
       <FlowerGarden />
+
+      {/* Butterflies Container - Bottom area only */}
+      <div className="butterfly-container absolute bottom-0 left-0 right-0 h-[200px] overflow-hidden pointer-events-none z-30">
+        <Butterflies minY={0} maxY={200} count={5} />
+      </div>
     </div>
   );
 };
