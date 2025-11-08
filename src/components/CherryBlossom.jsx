@@ -1,0 +1,235 @@
+import React, { useEffect, useRef } from 'react';
+
+class Petal {
+  constructor(config = {}) {
+    this.customClass = config.customClass || '';
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.z = config.z || 0;
+    this.xSpeedVariation = config.xSpeedVariation || 0;
+    this.ySpeed = config.ySpeed || 0;
+    this.rotation = {
+      axis: 'X',
+      value: 0,
+      speed: 0,
+      x: 0
+    };
+
+    if (config.rotation && typeof config.rotation === 'object') {
+      this.rotation.axis = config.rotation.axis || this.rotation.axis;
+      this.rotation.value = config.rotation.value || this.rotation.value;
+      this.rotation.speed = config.rotation.speed || this.rotation.speed;
+      this.rotation.x = config.rotation.x || this.rotation.x;
+    }
+
+    this.el = document.createElement('div');
+    this.el.className = 'petal ' + this.customClass;
+    this.el.style.position = 'absolute';
+    this.el.style.backfaceVisibility = 'visible';
+  }
+}
+
+class BlossomScene {
+  constructor(config) {
+    let container = document.getElementById(config.id);
+    if (container === null) {
+      throw new Error('[id] provided was not found in document');
+    }
+    this.container = container;
+    this.placeholder = document.createElement('div');
+    this.petals = [];
+    this.numPetals = config.numPetals || 10;
+    this.petalsTypes = config.petalsTypes;
+    this.gravity = config.gravity || 0.8;
+    this.windMaxSpeed = config.windMaxSpeed || 4;
+    this.windMagnitude = 0.2;
+    this.windDuration = 0;
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetHeight;
+    this.timer = 0;
+    this.animationFrame = null;
+
+    this.container.style.overflow = 'hidden';
+    this.placeholder.style.transformStyle = 'preserve-3d';
+    this.placeholder.style.width = this.container.offsetWidth + 'px';
+    this.placeholder.style.height = this.container.offsetHeight + 'px';
+    this.container.appendChild(this.placeholder);
+    this.createPetals();
+    this.animationFrame = requestAnimationFrame(this.updateFrame.bind(this));
+  }
+
+  resetPetal(petal) {
+    petal.x = this.width * 2 - Math.random() * this.width * 1.75;
+    petal.y = petal.el.offsetHeight * -1;
+    petal.z = Math.random() * 200;
+
+    if (petal.x > this.width) {
+      petal.x = this.width + petal.el.offsetWidth;
+      petal.y = Math.random() * this.height / 2;
+    }
+
+    petal.rotation.speed = Math.random() * 10;
+    let randomAxis = Math.random();
+    if (randomAxis > 0.5) {
+      petal.rotation.axis = 'X';
+    } else if (randomAxis > 0.25) {
+      petal.rotation.axis = 'Y';
+      petal.rotation.x = Math.random() * 180 + 90;
+    } else {
+      petal.rotation.axis = 'Z';
+      petal.rotation.x = Math.random() * 360 - 180;
+      petal.rotation.speed = Math.random() * 3;
+    }
+
+    petal.xSpeedVariation = Math.random() * 0.8 - 0.4;
+    petal.ySpeed = Math.random() + this.gravity;
+
+    return petal;
+  }
+
+  calculateWindSpeed(t, y) {
+    let a = this.windMagnitude / 2 * (this.height - 2 * y / 3) / this.height;
+    return a * Math.sin(2 * Math.PI / this.windDuration * t + (3 * Math.PI / 2)) + a;
+  }
+
+  updatePetal(petal) {
+    let petalWindSpeed = this.calculateWindSpeed(this.timer, petal.y);
+    let xSpeed = petalWindSpeed + petal.xSpeedVariation;
+
+    petal.x -= xSpeed;
+    petal.y += petal.ySpeed;
+    petal.rotation.value += petal.rotation.speed;
+
+    let t = 'translateX( ' + petal.x + 'px ) translateY( ' + petal.y + 'px ) translateZ( ' + petal.z + 'px )  rotate' + petal.rotation.axis + '( ' + petal.rotation.value + 'deg )';
+    if (petal.rotation.axis !== 'X') {
+      t += ' rotateX(' + petal.rotation.x + 'deg)';
+    }
+    petal.el.style.transform = t;
+
+    if (petal.x < -10 || petal.y > this.height + 10) {
+      this.resetPetal(petal);
+    }
+  }
+
+  updateWind() {
+    this.windMagnitude = Math.random() * this.windMaxSpeed;
+    this.windDuration = this.windMagnitude * 50 + (Math.random() * 20 - 10);
+  }
+
+  createPetals() {
+    for (let i = 0; i < this.numPetals; i++) {
+      let tmpPetalType = this.petalsTypes[Math.floor(Math.random() * (this.petalsTypes.length))];
+      let tmpPetal = new Petal({ customClass: tmpPetalType.customClass });
+
+      this.resetPetal(tmpPetal);
+      this.petals.push(tmpPetal);
+      this.placeholder.appendChild(tmpPetal.el);
+    }
+  }
+
+  updateFrame() {
+    if (this.timer === this.windDuration) {
+      this.updateWind();
+      this.timer = 0;
+    }
+
+    let petalsLen = this.petals.length;
+    for (let i = 0; i < petalsLen; i++) {
+      this.updatePetal(this.petals[i]);
+    }
+
+    this.timer++;
+    this.animationFrame = requestAnimationFrame(this.updateFrame.bind(this));
+  }
+
+  destroy() {
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame);
+    }
+    if (this.placeholder && this.placeholder.parentNode) {
+      this.placeholder.parentNode.removeChild(this.placeholder);
+    }
+  }
+}
+
+const CherryBlossom = () => {
+  const sceneRef = useRef(null);
+
+  useEffect(() => {
+    const petalsTypes = [
+      new Petal({ customClass: 'petal-style1' }),
+      new Petal({ customClass: 'petal-style2' }),
+      new Petal({ customClass: 'petal-style3' }),
+      new Petal({ customClass: 'petal-style4' })
+    ];
+
+    const config = {
+      id: 'blossom_container',
+      petalsTypes,
+      numPetals: 20
+    };
+
+    const timeout = setTimeout(() => {
+      if (document.getElementById('blossom_container')) {
+        sceneRef.current = new BlossomScene(config);
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+      if (sceneRef.current) {
+        sceneRef.current.destroy();
+      }
+    };
+  }, []);
+
+  return (
+    <>
+      <div 
+        id="blossom_container"
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          top: 0,
+          left: 0,
+          pointerEvents: 'none',
+          zIndex: 5
+        }}
+      />
+      <style>{`
+        .petal {
+          background: url(http://talktofill.surge.sh/cherry-blossom.png) no-repeat;
+          background-size: 200%;
+        }
+        
+        .petal.petal-style1 {
+          width: 22px;
+          height: 10px;
+          background-position: -15px 0;
+        }
+        
+        .petal.petal-style2 {
+          width: 21px;
+          height: 11px;
+          background-position: 0 -11px;
+        }
+        
+        .petal.petal-style3 {
+          width: 18px;
+          height: 12px;
+          background-position: 0 -25px;
+        }
+        
+        .petal.petal-style4 {
+          width: 13px;
+          height: 17px;
+          background-position: -24px -17px;
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default CherryBlossom;
+
