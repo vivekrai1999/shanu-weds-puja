@@ -53,7 +53,7 @@ const CountdownTimer = ({ weddingDate }) => {
             
             {/* Label */}
             <div className="mt-2">
-              <span className="text-xs md:text-sm font-semibold text-white tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              <span className="text-xs md:text-sm font-semibold text-white tracking-wide" style={{ fontFamily: "'Arya', sans-serif" }}>
                 {unit.label}
               </span>
             </div>

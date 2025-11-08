@@ -9,6 +9,8 @@ const LoadingScreen = ({ onLoadComplete }) => {
       // Images
       '/src/assets/images/shanu1.webp',
       '/src/assets/images/shanu2.webp',
+      '/src/assets/images/shanu3.webp',
+      '/src/assets/images/shanu4.webp',
       '/src/assets/images/frame-left.webp',
       '/src/assets/images/frame-right.webp',
       '/src/assets/images/women-left.webp',

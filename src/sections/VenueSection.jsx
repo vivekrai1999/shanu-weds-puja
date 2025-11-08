@@ -67,17 +67,30 @@ const VenueSection = () => {
         <div className="space-y-6">
           {/* Venue Details */}
           <div>
-            <p className="text-lg mb-4" style={{ color: '#1A1A1A' }}>
+            <p className="text-2xl md:text-3xl mb-4" style={{ color: '#1A1A1A', fontFamily: "'Rozha One', serif" }}>
               सेठीया मैरिज गार्डन रतलाम
             </p>
             <a
               href="https://share.google/iH9qmGrdJfB5ISHm9"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-3 px-6 py-3 text-base text-white rounded-full transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 mt-3 px-6 py-3 text-base text-white rounded-full transition-all duration-300 hover:scale-105"
               style={{ backgroundColor: '#DC3545' }}
             >
               स्थान देखें
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="animate-bounce-diagonal"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
             </a>
           </div>
         </div>

@@ -152,8 +152,9 @@ class BlossomScene {
   }
 }
 
-const CherryBlossom = () => {
+const CherryBlossom = ({ id = 'blossom_container' }) => {
   const sceneRef = useRef(null);
+  const containerIdRef = useRef(id);
 
   useEffect(() => {
     const petalsTypes = [
@@ -164,13 +165,13 @@ const CherryBlossom = () => {
     ];
 
     const config = {
-      id: 'blossom_container',
+      id: containerIdRef.current,
       petalsTypes,
       numPetals: 20
     };
 
     const timeout = setTimeout(() => {
-      if (document.getElementById('blossom_container')) {
+      if (document.getElementById(containerIdRef.current)) {
         sceneRef.current = new BlossomScene(config);
       }
     }, 100);
@@ -186,7 +187,7 @@ const CherryBlossom = () => {
   return (
     <>
       <div 
-        id="blossom_container"
+        id={containerIdRef.current}
         style={{
           position: 'absolute',
           width: '100%',
@@ -232,4 +233,3 @@ const CherryBlossom = () => {
 };
 
 export default CherryBlossom;
-

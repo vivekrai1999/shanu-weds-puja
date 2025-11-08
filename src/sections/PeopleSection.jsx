@@ -126,7 +126,7 @@ const PeopleSection = () => {
               className="flex-1 min-w-[280px] max-w-[400px]"
             >
               {/* Subheading */}
-              <h3 className="text-2xl mb-4 text-center" style={{ color: '#FFC300' }}>
+              <h3 className="text-3xl mb-4 text-center" style={{ color: '#FFC300' }}>
                 {group.title}
               </h3>
 
@@ -135,7 +135,7 @@ const PeopleSection = () => {
                 {group.people.map((person, personIndex) => (
                   <div
                     key={personIndex}
-                    className="text-center text-base"
+                    className="text-center text-lg"
                     style={{ color: '#FFFFFF' }}
                   >
                     {person}

@@ -146,7 +146,7 @@ const IntroSection = () => {
         <div 
           ref={dateRef}
           className="text-2xl md:text-3xl" 
-          style={{ fontFamily: "'Gotu', sans-serif", color: '#FFFFFF' }}
+          style={{ fontFamily: "'Arya', sans-serif", color: '#FFFFFF' }}
         >
           <p>रविवार, 30 नवम्बर 2025</p>
         </div>

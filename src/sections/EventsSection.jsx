@@ -24,9 +24,9 @@ const EventsSection = () => {
       day: 'गुरुवार',
       date: '27 नवम्बर 2025',
       items: [
-        { time: 'प्रातः 9:00 बजे', name: 'माताजी पूजन', location: 'निज निवास' },
+        { time: 'प्रातः 9:00 बजे', name: 'माता पूजन', location: 'निज निवास' },
         { time: 'दोपहर 1:30 बजे', name: 'हल्दी', location: 'केसर पैलेस', mapLink: 'https://maps.app.goo.gl/Lccxq9r3kNnaAFD9A' },
-        { time: 'सायं 7:00 बजे', name: 'महिला संगीत (डी. जे. नाईट)', location: 'केसर पैलेस', mapLink: 'https://maps.app.goo.gl/Lccxq9r3kNnaAFD9A' },
+        { time: 'सायं 7:00 बजे', name: 'महिला संगीत', location: 'केसर पैलेस', mapLink: 'https://maps.app.goo.gl/Lccxq9r3kNnaAFD9A' },
       ],
     },
     {
@@ -56,7 +56,7 @@ const EventsSection = () => {
       date: '1 दिसम्बर 2025',
       items: [
         { time: 'प्रातः 11:00 बजे', name: 'मामेरा (भात)', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
-        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह/माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
+        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
       ],
     },
   ];
@@ -145,7 +145,7 @@ const EventsSection = () => {
                 <div className="w-[70%] text-left pl-8 md:pl-12">
                   {/* Day - Date Row */}
                   <div className="mb-4">
-                    <h3 className="text-2xl text-white">
+                    <h3 className="text-3xl text-white">
                       {event.day}, {event.date}
                     </h3>
                   </div>
@@ -158,10 +158,10 @@ const EventsSection = () => {
                         <div className="grid grid-cols-2 gap-4">
                           {event.items.slice(0, 2).map((item, itemIndex) => (
                             <div key={itemIndex} className="text-white">
-                              <div className="text-xl" style={{ color: '#FFC300' }}>
+                              <div className="text-2xl" style={{ color: '#FFC300' }}>
                                 {item.name}
                               </div>
-                              <div className="text-base mt-1">
+                              <div className="text-lg mt-1">
                                 {item.time}
                               </div>
                               {item.location && (
@@ -172,7 +172,7 @@ const EventsSection = () => {
                                       href={item.mapLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="transition-all duration-300 hover:scale-125"
+                                      className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                       title="स्थान देखें"
                                     >
                                       <svg
@@ -185,8 +185,7 @@ const EventsSection = () => {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                       >
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
+                                        <path d="M7 17L17 7M17 7H7M17 7V17" />
                                       </svg>
                                     </a>
                                   )}
@@ -197,10 +196,10 @@ const EventsSection = () => {
                         </div>
                         {/* Third function in a separate row */}
                         <div className="text-white">
-                          <div className="text-xl" style={{ color: '#FFC300' }}>
+                          <div className="text-2xl" style={{ color: '#FFC300' }}>
                             {event.items[2].name}
                           </div>
-                          <div className="text-base mt-1">
+                          <div className="text-lg mt-1">
                             {event.items[2].time}
                           </div>
                           {event.items[2].location && (
@@ -211,7 +210,7 @@ const EventsSection = () => {
                                   href={event.items[2].mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="transition-all duration-300 hover:scale-125"
+                                  className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
                                   <svg
@@ -224,8 +223,7 @@ const EventsSection = () => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                   >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
                                   </svg>
                                 </a>
                               )}
@@ -236,10 +234,10 @@ const EventsSection = () => {
                     ) : (
                       event.items.map((item, itemIndex) => (
                         <div key={itemIndex} className="text-white">
-                          <div className="text-xl" style={{ color: '#FFC300' }}>
+                          <div className="text-2xl" style={{ color: '#FFC300' }}>
                             {item.name}
                           </div>
-                          <div className="text-base mt-1">
+                          <div className="text-lg mt-1">
                             {item.time}
                           </div>
                           {item.location && (
@@ -250,7 +248,7 @@ const EventsSection = () => {
                                   href={item.mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="transition-all duration-300 hover:scale-125"
+                                  className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
                                   <svg
@@ -263,8 +261,7 @@ const EventsSection = () => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                   >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
                                   </svg>
                                 </a>
                               )}
@@ -320,7 +317,7 @@ const EventsSection = () => {
                 <div className="w-[70%] text-right pr-8 md:pr-12">
                   {/* Day - Date Row */}
                   <div className="mb-4">
-                    <h3 className="text-2xl text-white">
+                    <h3 className="text-3xl text-white">
                       {event.day}, {event.date}
                     </h3>
                   </div>
@@ -333,10 +330,10 @@ const EventsSection = () => {
                         <div className="grid grid-cols-2 gap-4">
                           {event.items.slice(0, 2).map((item, itemIndex) => (
                             <div key={itemIndex} className="text-white">
-                              <div className="text-xl" style={{ color: '#FFC300' }}>
+                              <div className="text-2xl" style={{ color: '#FFC300' }}>
                                 {item.name}
                               </div>
-                              <div className="text-base mt-1">
+                              <div className="text-lg mt-1">
                                 {item.time}
                               </div>
                               {item.location && (
@@ -347,7 +344,7 @@ const EventsSection = () => {
                                       href={item.mapLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="transition-all duration-300 hover:scale-125"
+                                      className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                       title="स्थान देखें"
                                     >
                                       <svg
@@ -360,8 +357,7 @@ const EventsSection = () => {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                       >
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
+                                        <path d="M7 17L17 7M17 7H7M17 7V17" />
                                       </svg>
                                     </a>
                                   )}
@@ -372,10 +368,10 @@ const EventsSection = () => {
                         </div>
                         {/* Third function in a separate row */}
                         <div className="text-white">
-                          <div className="text-xl" style={{ color: '#FFC300' }}>
+                          <div className="text-2xl" style={{ color: '#FFC300' }}>
                             {event.items[2].name}
                           </div>
-                          <div className="text-base mt-1">
+                          <div className="text-lg mt-1">
                             {event.items[2].time}
                           </div>
                           {event.items[2].location && (
@@ -386,7 +382,7 @@ const EventsSection = () => {
                                   href={event.items[2].mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="transition-all duration-300 hover:scale-125"
+                                  className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
                                   <svg
@@ -399,8 +395,7 @@ const EventsSection = () => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                   >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
                                   </svg>
                                 </a>
                               )}
@@ -411,10 +406,10 @@ const EventsSection = () => {
                     ) : (
                       event.items.map((item, itemIndex) => (
                         <div key={itemIndex} className="text-white">
-                          <div className="text-xl" style={{ color: '#FFC300' }}>
+                          <div className="text-2xl" style={{ color: '#FFC300' }}>
                             {item.name}
                           </div>
-                          <div className="text-base mt-1">
+                          <div className="text-lg mt-1">
                             {item.time}
                           </div>
                           {item.location && (
@@ -425,7 +420,7 @@ const EventsSection = () => {
                                   href={item.mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="transition-all duration-300 hover:scale-125"
+                                  className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
                                   <svg
@@ -438,8 +433,7 @@ const EventsSection = () => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                   >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
                                   </svg>
                                 </a>
                               )}

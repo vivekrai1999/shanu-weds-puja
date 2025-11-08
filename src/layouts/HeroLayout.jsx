@@ -31,9 +31,6 @@ const HeroLayout= ({
   const groomRef = useRef(null);
   const sangRef = useRef(null);
   const brideRef = useRef(null);
-  const womenLeftRef = useRef(null);
-  const womenRightRef = useRef(null);
-  const framesRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -91,56 +88,6 @@ const HeroLayout= ({
           toggleActions: 'play none none reverse',
         },
       });
-
-      // Women images fade in
-      if (womenLeftRef.current) {
-        gsap.from(womenLeftRef.current, {
-          opacity: 0,
-          x: -50,
-          duration: 1.2,
-          delay: 0.4,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse',
-          },
-        });
-      }
-
-      if (womenRightRef.current) {
-        gsap.from(womenRightRef.current, {
-          opacity: 0,
-          x: 50,
-          duration: 1.2,
-          delay: 0.4,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse',
-          },
-        });
-      }
-
-      // Frames rotate in
-      framesRef.current.forEach((frame, index) => {
-        if (frame) {
-          gsap.from(frame, {
-            opacity: 0,
-            rotation: index === 0 ? -90 : 90,
-            scale: 0.5,
-            duration: 1,
-            delay: 1.2,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 60%',
-              toggleActions: 'play none none reverse',
-            },
-          });
-        }
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -152,19 +99,13 @@ const HeroLayout= ({
       className="hero-layout-section w-full h-screen relative overflow-hidden bg-white"
     >
       {/* Cherry Blossom Effect */}
-      <CherryBlossom />
+      <CherryBlossom id="hero_blossom_container" />
       
       {/* Decorative Frames - Bottom Only */}
-      <div 
-        ref={el => framesRef.current[0] = el}
-        className="absolute bottom-16 -left-4 z-10"
-      >
+      <div className="absolute bottom-16 -left-4 z-10">
         <img src={frameLeft} alt="Frame Left" className="h-48 w-auto object-contain rotate-[270deg]" />
       </div>
-      <div 
-        ref={el => framesRef.current[1] = el}
-        className="absolute bottom-16 -right-4 z-10"
-      >
+      <div className="absolute bottom-16 -right-4 z-10">
         <img src={frameRight} alt="Frame Right" className="h-48 w-auto object-contain rotate-90" />
       </div>
 
@@ -182,13 +123,11 @@ const HeroLayout= ({
 
         {/* Women Images - Mobile Only */}
         <img 
-          ref={womenLeftRef}
           src={womenLeft} 
           alt="Woman Left" 
           className="h-[500px] w-auto absolute left-[-10%] top-[40%] -translate-y-1/2 lg:hidden" 
         />
         <img 
-          ref={womenRightRef}
           src={womenRight} 
           alt="Woman Right" 
           className="h-[500px] w-auto absolute right-[-10%] top-[40%] -translate-y-1/2 lg:hidden" 
@@ -206,12 +145,12 @@ const HeroLayout= ({
             </div>
             <div className="text-center">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">सुपौत्र</p>
-              <p className="text-sm text-gray-700 mb-1">श्रीमती ग़ुलाबबाई</p>
-              <p className="text-sm text-gray-700">स्व. श्री प्रभुदयालजी गौड़</p>
+              <p className="text-base text-gray-700 mb-1">श्रीमती ग़ुलाबबाई</p>
+              <p className="text-base text-gray-700">स्व. श्री प्रभुदयालजी गौड़</p>
             </div>
             <div className="text-center">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">सुपुत्र</p>
-              <p className="text-sm text-gray-700">श्रीमती रानी - दिनेश गौड़</p>
+              <p className="text-base text-gray-700">श्रीमती रानी - दिनेश गौड़</p>
             </div>
           </div>
 
@@ -235,12 +174,12 @@ const HeroLayout= ({
             </div>
             <div className="text-center">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">सुपौत्री</p>
-              <p className="text-sm text-gray-700 mb-1">श्रीमती कमलादेवी</p>
-              <p className="text-sm text-gray-700">स्व. श्री रामस्वरूपजी शर्मा पटेल सा</p>
+              <p className="text-base text-gray-700 mb-1">श्रीमती कमलादेवी</p>
+              <p className="text-base text-gray-700">स्व. श्री रामस्वरूपजी शर्मा पटेल सा</p>
             </div>
             <div className="text-center">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">सुपुत्री</p>
-              <p className="text-sm text-gray-700">श्रीमती गीता - श्री सुरेंद्रजी शर्मा</p>
+              <p className="text-base text-gray-700">श्रीमती गीता - श्री सुरेंद्रजी शर्मा</p>
             </div>
           </div>
         </div>

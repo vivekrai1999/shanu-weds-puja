@@ -6,10 +6,10 @@ import CherryBlossom from './CherryBlossom';
 
 const WelcomeScreen = ({ onOpen }) => {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4" style={{ background: 'linear-gradient(135deg, #DC3545 0%, #FF1493 100%)' }}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4" style={{ backgroundColor: '#DC3545' }}>
       {/* Cherry Blossom Animation */}
       <div className="absolute inset-0">
-        <CherryBlossom />
+        <CherryBlossom id="welcome_blossom_container" />
       </div>
 
       {/* Content */}
@@ -32,7 +32,7 @@ const WelcomeScreen = ({ onOpen }) => {
         </h2>
 
         {/* Couple Photo with Marigold Frame */}
-        <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto mb-8 animate-fade-in-delay">
+        <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto mb-8 animate-fade-in-delay">
           {/* Rotating Marigold Background */}
           <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
             <img
@@ -56,7 +56,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Couple Names */}
         <p
-          className="text-3xl md:text-4xl mb-6 animate-fade-in-delay-2 text-white"
+          className="text-4xl md:text-5xl mb-6 animate-fade-in-delay-2 text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           दिव्येश संग पूजा
@@ -65,7 +65,7 @@ const WelcomeScreen = ({ onOpen }) => {
         {/* Date */}
         <p
           className="text-xl md:text-2xl mb-10 animate-fade-in-delay-3 text-white"
-          style={{ fontFamily: "'Gotu', sans-serif" }}
+          style={{ fontFamily: "'Arya', sans-serif" }}
         >
           रविवार, 30 नवम्बर 2025
         </p>
@@ -75,7 +75,7 @@ const WelcomeScreen = ({ onOpen }) => {
           onClick={onOpen}
           className="group relative px-12 py-4 text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
           style={{
-            fontFamily: "'Gotu', sans-serif",
+            fontFamily: "'Arya', sans-serif",
           }}
         >
           <span className="relative z-10 flex items-center gap-3">
