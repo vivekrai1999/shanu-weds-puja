@@ -22,7 +22,7 @@ const HeroLayout= ({
 }) => {
   return (
     <div 
-      className="w-full h-[100dvh] relative overflow-hidden"
+      className="w-full h-screen relative overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #FFF5F7 0%, #FFE4E1 25%, #FFF9E6 50%, #FFECDB 75%, #FFF5F7 100%)'
       }}
