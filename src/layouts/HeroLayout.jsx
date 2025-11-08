@@ -45,7 +45,7 @@ const HeroLayout= ({
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full h-full flex flex-col items-center justify-center pt-20 pb-40 px-4 relative">
+      <div className="w-full h-full flex flex-col items-center justify-center pt-12 pb-48 md:pt-20 md:pb-40 px-4 relative">
         {/* Top Center - Ganesha with Blooming Flower */}
         <div className="w-full flex justify-center mb-12">
           <BloomingFlower>
