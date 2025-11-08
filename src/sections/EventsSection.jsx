@@ -48,7 +48,7 @@ const EventsSection = () => {
       date: '1 दिसम्बर 2025',
       items: [
         { time: 'प्रातः 11:00 बजे', name: 'मामेरा (भात)', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
-        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह एवं माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
+        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह/माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
       ],
     },
   ];
