@@ -8,8 +8,8 @@
   
   #flower {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@
   /* Rotate only the flower sections, not the center content */
   #flower section {
     position: absolute;
-    width: 180px;
+    width: 280px;
     display: flex;
     justify-content: space-between;
     animation: rotate-petals 3s linear infinite;
@@ -35,7 +35,7 @@
   
   #flower section:before {
     content: " ";
-    background: linear-gradient(45deg, #E0115F 0%, #FFC300 100%);
+    background: #FFC300;
     border-radius: 30% 70% 71% 29% / 47% 47% 53% 53%;
     width: 70px;
     height: 50px;
@@ -45,7 +45,7 @@
   
   #flower section:after {
     content: " ";
-    background: linear-gradient(45deg, #E0115F 0%, #FFC300 100%);
+    background: #FFC300;
     border-radius: 66% 34% 39% 61% / 47% 47% 53% 53%;
     width: 70px;
     height: 50px;
