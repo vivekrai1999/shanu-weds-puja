@@ -19,9 +19,13 @@ const Butterflies = ({ minY = 0, maxY = 200, count = 5 }) => {
         const containerWidth = container.offsetWidth;
         const containerHeight = maxY;
         
-        // Random position within container
-        this.x = Math.floor(Math.random() * (containerWidth - 100)) + 50;
-        this.y = Math.floor(Math.random() * (containerHeight - 50)) + minY;
+        // Evenly distribute butterflies horizontally
+        const spacing = containerWidth / (count + 1);
+        this.x = spacing * (index + 1);
+        
+        // Position in upper half of container with slight variation
+        const upperHalfHeight = containerHeight * 0.5;
+        this.y = minY + Math.floor(Math.random() * upperHalfHeight);
         
         this.minY = minY;
         this.maxY = containerHeight - 20;

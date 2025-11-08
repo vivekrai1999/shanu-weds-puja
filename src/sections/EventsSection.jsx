@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FloralDivider from '../components/FloralDivider';
 import CountdownTimer from '../components/CountdownTimer';
 import mandala from '../assets/svgs/mandala.svg';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const EventsSection = () => {
+  const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const timerRef = useRef(null);
+  const eventRefs = useRef([]);
   const events = [
     {
       day: 'बुधवार',
@@ -53,21 +61,83 @@ const EventsSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      gsap.from(headingRef.current, {
+        opacity: 0,
+        y: -50,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // Timer animation
+      gsap.from(timerRef.current, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // Stagger event items
+      eventRefs.current.forEach((eventEl, index) => {
+        if (eventEl) {
+          gsap.from(eventEl, {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: eventEl,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="w-full py-12" style={{ backgroundColor: '#E0115F' }}>
+    <div 
+      ref={sectionRef}
+      className="w-full py-12" 
+      style={{ backgroundColor: '#E0115F' }}
+    >
       {/* Section Heading */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl text-white mb-8">
+        <h2 
+          ref={headingRef}
+          className="text-4xl md:text-5xl text-white mb-8"
+        >
           मांगलिक पलों का सफर
         </h2>
-        <CountdownTimer weddingDate="2025-11-30T10:30:00" />
+        <div ref={timerRef}>
+          <CountdownTimer weddingDate="2025-11-30T10:30:00" />
+        </div>
       </div>
 
       {/* Events List */}
       <div className="pb-12">
         {events.map((event, index) => (
           <React.Fragment key={index}>
-            <div className="w-full flex relative">
+            <div 
+              ref={el => eventRefs.current[index] = el}
+              className="w-full flex relative"
+            >
             {/* Odd rows: 70% content (left aligned) + 30% mandala container */}
             {index % 2 === 0 ? (
               <>

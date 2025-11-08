@@ -6,20 +6,26 @@ const MusicPlayer = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Auto-play when component mounts
-    const playAudio = async () => {
+    // Listen for the custom 'invitation.open' event
+    const handleInvitationOpen = async () => {
       try {
         if (audioRef.current) {
           await audioRef.current.play();
           setIsPlaying(true);
+          console.log('✅ Music started playing after user interaction');
         }
       } catch (error) {
-        console.log('Autoplay prevented:', error);
-        // Autoplay might be blocked by browser, user will need to click
+        console.error('❌ Failed to play music:', error);
+        setIsPlaying(false);
       }
     };
 
-    playAudio();
+    // Add event listener for custom event
+    document.addEventListener('invitation.open', handleInvitationOpen);
+
+    return () => {
+      document.removeEventListener('invitation.open', handleInvitationOpen);
+    };
   }, []);
 
   const togglePlay = () => {
@@ -28,8 +34,13 @@ const MusicPlayer = () => {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play();
-        setIsPlaying(true);
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(error => {
+            console.log('Play failed:', error);
+          });
       }
     }
   };
@@ -37,14 +48,19 @@ const MusicPlayer = () => {
   return (
     <>
       {/* Hidden Audio Element */}
-      <audio ref={audioRef} loop autoPlay>
+      <audio 
+        ref={audioRef} 
+        loop 
+        preload="auto"
+        playsInline
+      >
         <source src={bgMusic} type="audio/mpeg" />
       </audio>
 
       {/* Floating Play/Pause Button */}
       <button
         onClick={togglePlay}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 ${!isPlaying ? 'animate-pulse' : ''}`}
         style={{
           backgroundColor: '#E0115F',
           boxShadow: '0 4px 12px rgba(224, 17, 95, 0.4)'
@@ -87,4 +103,3 @@ const MusicPlayer = () => {
 };
 
 export default MusicPlayer;
-
