@@ -60,7 +60,7 @@ const PeopleSection = () => {
           <React.Fragment key={index}>
             <div className="flex-1 min-w-[280px] max-w-[400px]">
             {/* Subheading */}
-            <h3 className="text-2xl font-bold mb-6 text-center" style={{ color: '#E0115F' }}>
+            <h3 className="text-2xl font-bold mb-6 text-center" style={{ color: '#000000' }}>
               {group.title}
             </h3>
 
@@ -69,7 +69,8 @@ const PeopleSection = () => {
               {group.people.map((person, personIndex) => (
                 <div
                   key={personIndex}
-                  className="text-center text-white"
+                  className="text-center"
+                  style={{ color: '#000000' }}
                 >
                   {person}
                 </div>
