@@ -12,7 +12,7 @@ const Butterflies = ({ minY = 0, maxY = 200, count = 5 }) => {
       return;
     }
 
-    const colors = ['#E0115F', '#FFC300', '#FF1493', '#FFD700', '#FF69B4', '#FFA500', '#DC143C'];
+    const colors = ['#DC3545', '#FFC300', '#FF1493', '#FFD700', '#FF69B4', '#FFA500', '#DC143C'];
 
     class Butterfly {
       constructor(index) {

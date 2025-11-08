@@ -62,8 +62,8 @@ const MusicPlayer = () => {
         onClick={togglePlay}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 ${!isPlaying ? 'animate-pulse' : ''}`}
         style={{
-          backgroundColor: '#E0115F',
-          boxShadow: '0 4px 12px rgba(224, 17, 95, 0.4)'
+          backgroundColor: '#DC3545',
+          boxShadow: '0 4px 12px rgba(220, 53, 69, 0.4)'
         }}
         aria-label={isPlaying ? 'Pause Music' : 'Play Music'}
       >

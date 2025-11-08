@@ -6,7 +6,7 @@ import CherryBlossom from './CherryBlossom';
 
 const WelcomeScreen = ({ onOpen }) => {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4" style={{ background: 'linear-gradient(135deg, #E0115F 0%, #FF1493 100%)' }}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4" style={{ background: 'linear-gradient(135deg, #DC3545 0%, #FF1493 100%)' }}>
       {/* Cherry Blossom Animation */}
       <div className="absolute inset-0">
         <CherryBlossom />
@@ -65,7 +65,7 @@ const WelcomeScreen = ({ onOpen }) => {
         {/* Date */}
         <p
           className="text-xl md:text-2xl mb-10 animate-fade-in-delay-3 text-white"
-          style={{ fontFamily: "'Arya', sans-serif" }}
+          style={{ fontFamily: "'Gotu', sans-serif" }}
         >
           रविवार, 30 नवम्बर 2025
         </p>
@@ -75,7 +75,7 @@ const WelcomeScreen = ({ onOpen }) => {
           onClick={onOpen}
           className="group relative px-12 py-4 text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
           style={{
-            fontFamily: "'Arya', sans-serif",
+            fontFamily: "'Gotu', sans-serif",
           }}
         >
           <span className="relative z-10 flex items-center gap-3">
@@ -121,10 +121,10 @@ const WelcomeScreen = ({ onOpen }) => {
         
         @keyframes pulse-glow {
           0%, 100% {
-            box-shadow: 0 0 20px rgba(224, 17, 95, 0.5);
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
           }
           50% {
-            box-shadow: 0 0 40px rgba(224, 17, 95, 0.8);
+            box-shadow: 0 0 40px rgba(220, 53, 69, 0.8);
           }
         }
         
@@ -138,7 +138,7 @@ const WelcomeScreen = ({ onOpen }) => {
         }
         
         .ganesha-image {
-          filter: drop-shadow(0 4px 8px rgba(224, 17, 95, 0.3)) 
+          filter: drop-shadow(0 4px 8px rgba(220, 53, 69, 0.3)) 
                   brightness(1.1) 
                   saturate(1.2);
         }

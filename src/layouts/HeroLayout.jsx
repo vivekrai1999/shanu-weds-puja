@@ -175,7 +175,7 @@ const HeroLayout= ({
           ref={omRef}
           className="w-full text-center mb-12 md:mb-16"
         >
-          <p className="text-2xl md:text-3xl" style={{ fontFamily: "'Rozha One', serif", color: '#E0115F' }}>
+          <p className="text-2xl md:text-3xl" style={{ fontFamily: "'Rozha One', serif", color: '#DC3545' }}>
             ॐ श्री गणेशाय नमः
           </p>
         </div>
@@ -202,7 +202,7 @@ const HeroLayout= ({
             className="flex flex-col gap-4 w-full lg:w-auto"
           >
             <div className="text-center">
-              <h2 className="text-4xl font-bold" style={{ color: '#E0115F' }}>दिव्येश</h2>
+              <h2 className="text-4xl font-bold" style={{ color: '#DC3545' }}>दिव्येश</h2>
             </div>
             <div className="text-center">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">सुपौत्र</p>
@@ -231,7 +231,7 @@ const HeroLayout= ({
             className="flex flex-col gap-4 w-full lg:w-auto"
           >
             <div className="text-center">
-              <h2 className="text-4xl font-bold" style={{ color: '#E0115F' }}>पूजा</h2>
+              <h2 className="text-4xl font-bold" style={{ color: '#DC3545' }}>पूजा</h2>
             </div>
             <div className="text-center">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">सुपौत्री</p>

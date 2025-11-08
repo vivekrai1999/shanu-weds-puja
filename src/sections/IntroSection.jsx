@@ -98,7 +98,7 @@ const IntroSection = () => {
       <div 
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(224, 17, 95, 0.95) 0%, rgba(224, 17, 95, 0.85) 25%, rgba(224, 17, 95, 0.7) 50%, rgba(224, 17, 95, 0.85) 75%, rgba(224, 17, 95, 0.95) 100%)'
+          background: 'linear-gradient(to bottom, rgba(220, 53, 69, 0.95) 0%, rgba(220, 53, 69, 0.85) 25%, rgba(220, 53, 69, 0.7) 50%, rgba(220, 53, 69, 0.85) 75%, rgba(220, 53, 69, 0.95) 100%)'
         }}
       />
 
@@ -146,7 +146,7 @@ const IntroSection = () => {
         <div 
           ref={dateRef}
           className="text-2xl md:text-3xl" 
-          style={{ fontFamily: "'Arya', sans-serif", color: '#FFFFFF' }}
+          style={{ fontFamily: "'Gotu', sans-serif", color: '#FFFFFF' }}
         >
           <p>रविवार, 30 नवम्बर 2025</p>
         </div>

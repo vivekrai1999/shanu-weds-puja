@@ -115,7 +115,7 @@ const EventsSection = () => {
     <div 
       ref={sectionRef}
       className="w-full py-12" 
-      style={{ backgroundColor: '#E0115F' }}
+      style={{ backgroundColor: '#DC3545' }}
     >
       {/* Section Heading */}
       <div className="text-center mb-16">
@@ -158,7 +158,7 @@ const EventsSection = () => {
                         <div className="grid grid-cols-2 gap-4">
                           {event.items.slice(0, 2).map((item, itemIndex) => (
                             <div key={itemIndex} className="text-white">
-                              <div className="text-xl font-semibold" style={{ color: '#FFC300' }}>
+                              <div className="text-xl" style={{ color: '#FFC300' }}>
                                 {item.name}
                               </div>
                               <div className="text-base mt-1">
@@ -172,9 +172,22 @@ const EventsSection = () => {
                                       href={item.mapLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-xs underline hover:text-yellow-300 transition-colors"
+                                      className="transition-all duration-300 hover:scale-125"
+                                      title="स्थान देखें"
                                     >
-                                      स्थल देखें
+                                      <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="#FFC300"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      >
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                      </svg>
                                     </a>
                                   )}
                                 </div>
@@ -184,7 +197,7 @@ const EventsSection = () => {
                         </div>
                         {/* Third function in a separate row */}
                         <div className="text-white">
-                          <div className="text-xl font-semibold" style={{ color: '#FFC300' }}>
+                          <div className="text-xl" style={{ color: '#FFC300' }}>
                             {event.items[2].name}
                           </div>
                           <div className="text-base mt-1">
@@ -192,15 +205,28 @@ const EventsSection = () => {
                           </div>
                           {event.items[2].location && (
                             <div className="flex items-center gap-2 mt-1">
-                              <span className="text-sm">{event.items[2].location}</span>
+                              <span className="text-base">{event.items[2].location}</span>
                               {event.items[2].mapLink && (
                                 <a
                                   href={event.items[2].mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-xs underline hover:text-yellow-300 transition-colors"
+                                  className="transition-all duration-300 hover:scale-125"
+                                  title="स्थान देखें"
                                 >
-                                  स्थल देखें
+                                  <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#FFC300"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                  </svg>
                                 </a>
                               )}
                             </div>
@@ -210,7 +236,7 @@ const EventsSection = () => {
                     ) : (
                       event.items.map((item, itemIndex) => (
                         <div key={itemIndex} className="text-white">
-                          <div className="text-xl font-semibold" style={{ color: '#FFC300' }}>
+                          <div className="text-xl" style={{ color: '#FFC300' }}>
                             {item.name}
                           </div>
                           <div className="text-base mt-1">
@@ -218,15 +244,28 @@ const EventsSection = () => {
                           </div>
                           {item.location && (
                             <div className="flex items-center gap-2 mt-1">
-                              <span className="text-sm">{item.location}</span>
+                              <span className="text-base">{item.location}</span>
                               {item.mapLink && (
                                 <a
                                   href={item.mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-xs underline hover:text-yellow-300 transition-colors"
+                                  className="transition-all duration-300 hover:scale-125"
+                                  title="स्थान देखें"
                                 >
-                                  स्थल देखें
+                                  <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#FFC300"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                  </svg>
                                 </a>
                               )}
                             </div>
@@ -294,7 +333,7 @@ const EventsSection = () => {
                         <div className="grid grid-cols-2 gap-4">
                           {event.items.slice(0, 2).map((item, itemIndex) => (
                             <div key={itemIndex} className="text-white">
-                              <div className="text-xl font-semibold" style={{ color: '#FFC300' }}>
+                              <div className="text-xl" style={{ color: '#FFC300' }}>
                                 {item.name}
                               </div>
                               <div className="text-base mt-1">
@@ -302,15 +341,28 @@ const EventsSection = () => {
                               </div>
                               {item.location && (
                                 <div className="flex items-center justify-end gap-2 mt-1">
-                                  <span className="text-sm">{item.location}</span>
+                                  <span className="text-base">{item.location}</span>
                                   {item.mapLink && (
                                     <a
                                       href={item.mapLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-xs underline hover:text-yellow-300 transition-colors"
+                                      className="transition-all duration-300 hover:scale-125"
+                                      title="स्थान देखें"
                                     >
-                                      स्थल देखें
+                                      <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="#FFC300"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      >
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                      </svg>
                                     </a>
                                   )}
                                 </div>
@@ -320,7 +372,7 @@ const EventsSection = () => {
                         </div>
                         {/* Third function in a separate row */}
                         <div className="text-white">
-                          <div className="text-xl font-semibold" style={{ color: '#FFC300' }}>
+                          <div className="text-xl" style={{ color: '#FFC300' }}>
                             {event.items[2].name}
                           </div>
                           <div className="text-base mt-1">
@@ -328,15 +380,28 @@ const EventsSection = () => {
                           </div>
                           {event.items[2].location && (
                             <div className="flex items-center justify-end gap-2 mt-1">
-                              <span className="text-sm">{event.items[2].location}</span>
+                              <span className="text-base">{event.items[2].location}</span>
                               {event.items[2].mapLink && (
                                 <a
                                   href={event.items[2].mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-xs underline hover:text-yellow-300 transition-colors"
+                                  className="transition-all duration-300 hover:scale-125"
+                                  title="स्थान देखें"
                                 >
-                                  स्थल देखें
+                                  <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#FFC300"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                  </svg>
                                 </a>
                               )}
                             </div>
@@ -346,7 +411,7 @@ const EventsSection = () => {
                     ) : (
                       event.items.map((item, itemIndex) => (
                         <div key={itemIndex} className="text-white">
-                          <div className="text-xl font-semibold" style={{ color: '#FFC300' }}>
+                          <div className="text-xl" style={{ color: '#FFC300' }}>
                             {item.name}
                           </div>
                           <div className="text-base mt-1">
@@ -354,15 +419,28 @@ const EventsSection = () => {
                           </div>
                           {item.location && (
                             <div className="flex items-center justify-end gap-2 mt-1">
-                              <span className="text-sm">{item.location}</span>
+                              <span className="text-base">{item.location}</span>
                               {item.mapLink && (
                                 <a
                                   href={item.mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-xs underline hover:text-yellow-300 transition-colors"
+                                  className="transition-all duration-300 hover:scale-125"
+                                  title="स्थान देखें"
                                 >
-                                  स्थल देखें
+                                  <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#FFC300"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                  </svg>
                                 </a>
                               )}
                             </div>

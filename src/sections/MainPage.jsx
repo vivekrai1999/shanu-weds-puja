@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import IntroSection from './IntroSection'
 import HeroLayout from '../layouts/HeroLayout'
 import EventsLayout from '../layouts/EventsLayout'
 import PeopleLayout from '../layouts/PeopleLayout'
 import EventsSection from './EventsSection'
+import VenueSection from './VenueSection'
 import WaveSeparator from '../components/WaveSeprator'
 import WaveSeparatorLayered from '../components/WaveSeparatorLayered'
 import WaveSeparatorFlipped from '../components/WaveSeparatorFlipped'
@@ -15,7 +16,26 @@ function MainPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
 
+  useEffect(() => {
+    // Prevent scrolling when welcome screen is visible
+    if (showWelcome) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [showWelcome]);
+
   const handleOpenInvitation = () => {
+    // Reset scroll position to top
+    window.scrollTo(0, 0);
+    
     // Dispatch custom event to trigger music
     document.dispatchEvent(new Event('invitation.open'));
     
@@ -46,13 +66,17 @@ function MainPage() {
       </div>
       <HeroLayout/>
       <div className="-mt-25 relative z-20">
-        <WaveSeparatorLayered color="#E0115F" />
+      <WaveSeparatorLayered color="#DC3545" />
       </div>
       <EventsLayout>
         <EventsSection/>
       </EventsLayout>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFC300" />
+      </div>
+      <VenueSection />
+      <div className="-mt-14 relative z-20">
+        <WaveSeparator color="#DC3545" />
       </div>
       <PeopleLayout/>
     </div>

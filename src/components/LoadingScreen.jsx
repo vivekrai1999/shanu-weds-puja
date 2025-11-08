@@ -60,7 +60,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
     <div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
       style={{
-        backgroundColor: '#E0115F'
+        backgroundColor: '#DC3545'
       }}
     >
       {/* Loading Content */}

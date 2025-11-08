@@ -111,10 +111,10 @@ const PeopleSection = () => {
     <div 
       ref={sectionRef}
       className="w-full py-6 px-4" 
-      style={{ backgroundColor: '#FFC300' }}
+      style={{ backgroundColor: '#DC3545' }}
     >
       {/* People Groups Flex Container */}
-      <div className="flex flex-wrap gap-6 justify-center">
+      <div className="flex flex-wrap gap-4 justify-center">
         {peopleGroups.map((group, index) => (
           <React.Fragment key={index}>
             <div 
@@ -126,17 +126,17 @@ const PeopleSection = () => {
               className="flex-1 min-w-[280px] max-w-[400px]"
             >
               {/* Subheading */}
-              <h3 className="text-2xl font-bold mb-6 text-center" style={{ color: '#1A1A1A' }}>
+              <h3 className="text-2xl mb-4 text-center" style={{ color: '#FFC300' }}>
                 {group.title}
               </h3>
 
               {/* People List */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {group.people.map((person, personIndex) => (
                   <div
                     key={personIndex}
-                    className="text-center"
-                    style={{ color: '#1A1A1A' }}
+                    className="text-center text-base"
+                    style={{ color: '#FFFFFF' }}
                   >
                     {person}
                   </div>
@@ -144,8 +144,8 @@ const PeopleSection = () => {
               </div>
             </div>
             {index < peopleGroups.length - 1 && (
-              <div className="w-full flex justify-center my-6">
-                <FloralDivider color="#E0115F" height={50} />
+              <div className="w-full flex justify-center my-4">
+                <FloralDivider color="#FFC300" height={50} />
               </div>
             )}
           </React.Fragment>
