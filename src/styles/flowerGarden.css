@@ -1,7 +1,7 @@
 /* Flower Garden Styles - Complete Implementation */
 .flower-garden-wrapper {
   position: absolute;
-  bottom: 0;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%) scale(0.5);
   display: flex;

@@ -22,40 +22,31 @@ const HeroLayout= ({
 }) => {
   return (
     <div 
-      className="w-full h-screen relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, #FFF5F7 0%, #FFE4E1 25%, #FFF9E6 50%, #FFECDB 75%, #FFF5F7 100%)'
-      }}
+      className="w-full h-screen relative overflow-hidden bg-white"
     >
       {/* Cherry Blossom Effect */}
       <CherryBlossom />
       
-      {/* Decorative Frames */}
-      <div className="absolute -top-4 -left-4 z-10">
-        <img src={frameLeft} alt="Frame Left" className="h-48 w-auto object-contain" />
-      </div>
-      <div className="absolute -top-4 -right-4 z-10">
-        <img src={frameRight} alt="Frame Right" className="h-48 w-auto object-contain" />
-      </div>
-      <div className="absolute -bottom-4 -left-4 z-10">
+      {/* Decorative Frames - Bottom Only */}
+      <div className="absolute bottom-16 -left-4 z-10">
         <img src={frameLeft} alt="Frame Left" className="h-48 w-auto object-contain rotate-[270deg]" />
       </div>
-      <div className="absolute -bottom-4 -right-4 z-10">
+      <div className="absolute bottom-16 -right-4 z-10">
         <img src={frameRight} alt="Frame Right" className="h-48 w-auto object-contain rotate-90" />
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full h-full flex flex-col items-center justify-center pt-12 pb-48 md:pt-20 md:pb-40 px-4 relative">
-        {/* Top Center - Ganesha with Blooming Flower */}
-        <div className="w-full flex justify-center mb-12">
-          <BloomingFlower>
-            <img src={ganesha} alt="Ganesha" className="w-20 h-20 object-contain" />
-          </BloomingFlower>
+      <div className="w-full h-full flex flex-col items-center justify-start pt-4 pb-48 md:pt-6 md:pb-40 px-4 relative">
+        {/* Om Shree Ganeshay Namah */}
+        <div className="w-full text-center mb-12 md:mb-16">
+          <p className="text-2xl md:text-3xl" style={{ fontFamily: "'Rozha One', serif", color: '#E0115F' }}>
+            ॐ श्री गणेशाय नमः
+          </p>
         </div>
 
         {/* Women Images - Mobile Only */}
-        <img src={womenLeft} alt="Woman Left" className="h-[500px] w-auto absolute left-[-10%] top-1/2 -translate-y-1/2 lg:hidden" />
-        <img src={womenRight} alt="Woman Right" className="h-[500px] w-auto absolute right-[-10%] top-1/2 -translate-y-1/2 lg:hidden" />
+        <img src={womenLeft} alt="Woman Left" className="h-[500px] w-auto absolute left-[-10%] top-[40%] -translate-y-1/2 lg:hidden" />
+        <img src={womenRight} alt="Woman Right" className="h-[500px] w-auto absolute right-[-10%] top-[40%] -translate-y-1/2 lg:hidden" />
 
         {/* Center Content - Names and Parents */}
         <div className="w-full max-w-4xl flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 z-10">

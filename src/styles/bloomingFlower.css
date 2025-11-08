@@ -8,7 +8,8 @@
   
   #flower {
     position: relative;
-    width: 140px;
+    width: 200px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +18,7 @@
   /* Rotate only the flower sections, not the center content */
   #flower section {
     position: absolute;
-    width: 100px;
+    width: 180px;
     display: flex;
     justify-content: space-between;
     animation: rotate-petals 3s linear infinite;
@@ -34,20 +35,20 @@
   
   #flower section:before {
     content: " ";
-    background: linear-gradient(45deg, purple 0%, pink 100%);
+    background: linear-gradient(45deg, #E0115F 0%, #FFC300 100%);
     border-radius: 30% 70% 71% 29% / 47% 47% 53% 53%;
-    width: 50px;
-    height: 36px;
+    width: 70px;
+    height: 50px;
     mix-blend-mode: soft-light;
     opacity: 0.75;
   }
   
   #flower section:after {
     content: " ";
-    background: linear-gradient(45deg, purple 0%, pink 100%);
+    background: linear-gradient(45deg, #E0115F 0%, #FFC300 100%);
     border-radius: 66% 34% 39% 61% / 47% 47% 53% 53%;
-    width: 50px;
-    height: 36px;
+    width: 70px;
+    height: 50px;
     mix-blend-mode: soft-light;
     opacity: 0.75;
   }
@@ -69,11 +70,15 @@
   }
   
   .flower-center {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     pointer-events: all;
   }
   

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WaveSeparatorLayered = ({ color = '#ff0080', className = '' }) => {
+const WaveSeparatorLayered = ({ color = '#ff0080', useGradient = false, className = '' }) => {
   return (
     <svg
       width="100%"
@@ -10,6 +10,17 @@ const WaveSeparatorLayered = ({ color = '#ff0080', className = '' }) => {
       className={`transition duration-300 ease-in-out delay-150 ${className}`}
       preserveAspectRatio="none"
     >
+      {useGradient && (
+        <defs>
+          <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#FFF5F7', stopOpacity: 1 }} />
+            <stop offset="25%" style={{ stopColor: '#FFE4E1', stopOpacity: 1 }} />
+            <stop offset="50%" style={{ stopColor: '#FFF9E6', stopOpacity: 1 }} />
+            <stop offset="75%" style={{ stopColor: '#FFECDB', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#FFF5F7', stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+      )}
       <style>
         {`
           .path-0 {
@@ -65,7 +76,7 @@ const WaveSeparatorLayered = ({ color = '#ff0080', className = '' }) => {
         d="M 0,400 L 0,0 C 73.52153110047843,27.282296650717697 147.04306220095685,54.564593301435394 241,73 C 334.95693779904315,91.4354066985646 449.3492822966508,101.02392344497609 556,104 C 662.6507177033492,106.97607655502391 761.5598086124402,103.33971291866028 858,108 C 954.4401913875598,112.66028708133972 1048.4114832535886,125.61722488038279 1145,109 C 1241.5885167464114,92.38277511961721 1340.7942583732056,46.191387559808604 1440,0 L 1440,400 L 0,400 Z"
         stroke="none"
         strokeWidth="0"
-        fill={color}
+        fill={useGradient ? "url(#heroGradient)" : color}
         fillOpacity="0.53"
         className="transition-all duration-300 ease-in-out delay-150 path-0"
       />
@@ -73,7 +84,7 @@ const WaveSeparatorLayered = ({ color = '#ff0080', className = '' }) => {
         d="M 0,400 L 0,0 C 115.80861244019138,115.01435406698565 231.61722488038276,230.0287081339713 326,257 C 420.38277511961724,283.9712918660287 493.3397129186603,222.89952153110048 591,198 C 688.6602870813397,173.10047846889952 811.0239234449759,184.37320574162678 906,218 C 1000.9760765550241,251.62679425837322 1068.5645933014355,307.60765550239233 1153,275 C 1237.4354066985645,242.39234449760767 1338.7177033492821,121.19617224880383 1440,0 L 1440,400 L 0,400 Z"
         stroke="none"
         strokeWidth="0"
-        fill={color}
+        fill={useGradient ? "url(#heroGradient)" : color}
         fillOpacity="1"
         className="transition-all duration-300 ease-in-out delay-150 path-1"
       />

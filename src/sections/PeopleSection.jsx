@@ -59,23 +59,22 @@ const PeopleSection = () => {
         {peopleGroups.map((group, index) => (
           <React.Fragment key={index}>
             <div className="flex-1 min-w-[280px] max-w-[400px]">
-              {/* Subheading */}
-              <h3 className="text-2xl font-bold mb-6 text-center" style={{ color: '#8B4513' }}>
-                {group.title}
-              </h3>
+            {/* Subheading */}
+            <h3 className="text-2xl font-bold mb-6 text-center" style={{ color: '#E0115F' }}>
+              {group.title}
+            </h3>
 
-              {/* People List */}
-              <div className="space-y-3">
-                {group.people.map((person, personIndex) => (
-                  <div
-                    key={personIndex}
-                    className="text-center"
-                    style={{ color: '#654321' }}
-                  >
-                    {person}
-                  </div>
-                ))}
-              </div>
+            {/* People List */}
+            <div className="space-y-3">
+              {group.people.map((person, personIndex) => (
+                <div
+                  key={personIndex}
+                  className="text-center text-white"
+                >
+                  {person}
+                </div>
+              ))}
+            </div>
             </div>
             {index < peopleGroups.length - 1 && (
               <div className="w-full flex justify-center my-6">
