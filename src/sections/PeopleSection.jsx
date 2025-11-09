@@ -30,7 +30,7 @@ const PeopleSection = () => {
       {
         title: 'प्रतिक्षारत',
         people: [
-          'सुश्री धवल गोड़, कल्पित गौड़',
+          'सुश्री धवल गौड़, कल्पित गौड़',
         ],
       },
       {
@@ -123,6 +123,7 @@ const PeopleSection = () => {
   return (
     <div 
       ref={sectionRef}
+
       className="w-full pt-6 pb-32 px-4" 
       style={{ backgroundColor: '#DC3545' }}
     >

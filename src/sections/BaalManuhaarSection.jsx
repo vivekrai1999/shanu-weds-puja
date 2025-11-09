@@ -65,7 +65,7 @@ const BaalManuhaarSection = () => {
         className="max-w-4xl mx-auto text-center"
       >
         <p className="text-xl md:text-2xl" style={{ color: '#1A1A1A' }}>
-          मितांश, रिधान, जिज्ञासा, निलांशी, नमस्वी, अयांशी, रिशिव
+          मितांश, रिधान, जिज्ञासा, निलांशी, नमस्वी, अयांशी, रिशिव, श्री
         </p>
       </div>
     </div>
