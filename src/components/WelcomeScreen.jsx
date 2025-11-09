@@ -15,7 +15,7 @@ const WelcomeScreen = ({ onOpen }) => {
       {/* Content */}
       <div className="relative z-10 text-center max-w-2xl my-auto">
         {/* Ganesha Image */}
-        <div className="mb-3 md:mb-4 animate-bounce-slow">
+        <div className="mb-6 md:mb-8 animate-bounce-slow">
           <img
             src={ganesha}
             alt="Ganesha"
@@ -25,14 +25,14 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Heading after Ganesha */}
         <h2
-          className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-4 md:mb-6 animate-fade-in text-white"
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-8 md:mb-10 animate-fade-in text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           उत्सव परिणय बंधन का
         </h2>
 
         {/* Couple Photo with Marigold Frame */}
-        <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mx-auto mb-4 md:mb-6 animate-fade-in-delay">
+        <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mx-auto mb-8 md:mb-10 animate-fade-in-delay">
           {/* Rotating Marigold Background */}
           <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
             <img
@@ -56,7 +56,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Couple Names */}
         <p
-          className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-3 md:mb-4 animate-fade-in-delay-2 text-white"
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 md:mb-8 animate-fade-in-delay-2 text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           दिव्येश संग पूजा
@@ -64,7 +64,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Date */}
         <p
-          className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 animate-fade-in-delay-3 text-white"
+          className="text-xl md:text-2xl lg:text-3xl mb-10 md:mb-12 animate-fade-in-delay-3 text-white"
           style={{ fontFamily: "'Arya', sans-serif" }}
         >
           रविवार, 30 नवम्बर 2025
