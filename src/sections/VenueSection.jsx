@@ -71,7 +71,7 @@ const VenueSection = () => {
               सेठीया मैरिज गार्डन रतलाम
             </p>
             <a
-              href="https://share.google/iH9qmGrdJfB5ISHm9"
+              href="https://maps.app.goo.gl/CmjuX7MwLk5Ec8Wh8"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-3 px-6 py-3 text-base text-white rounded-full transition-all duration-300 hover:scale-105"

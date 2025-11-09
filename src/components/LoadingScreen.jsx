@@ -73,7 +73,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
       <div className="text-center px-4">
         {/* Heading */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl text-white mb-8" style={{ fontFamily: "'Rozha One', serif" }}>
-          शादी का निमंत्रण
+          विवाह निमंत्रण
         </h1>
 
         {/* Couple Names */}

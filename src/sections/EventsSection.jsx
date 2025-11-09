@@ -26,7 +26,7 @@ const EventsSection = () => {
       items: [
         { time: 'प्रातः 9:00 बजे', name: 'माता पूजन', location: 'निज निवास' },
         { time: 'दोपहर 1:30 बजे', name: 'हल्दी', location: 'केसर पैलेस', mapLink: 'https://maps.app.goo.gl/Lccxq9r3kNnaAFD9A' },
-        { time: 'सायं 7:00 बजे', name: 'महिला संगीत', location: 'केसर पैलेस', mapLink: 'https://maps.app.goo.gl/Lccxq9r3kNnaAFD9A' },
+        { time: 'सायं 7:00 बजे', name: 'संगीत (डीजे नाईट)', location: 'केसर पैलेस', mapLink: 'https://maps.app.goo.gl/Lccxq9r3kNnaAFD9A' },
       ],
     },
     {
@@ -41,7 +41,7 @@ const EventsSection = () => {
       day: 'शनिवार',
       date: '29 नवम्बर 2025',
       items: [
-        { time: 'प्रातः 11:00 बजे', name: 'सगाई/फलदान', location: 'राज बाग ग्वालियर', mapLink: 'https://share.google/szw84F0A6QaS0KuVR' },
+        { time: 'प्रातः 11:00 बजे', name: 'सगाई/फलदान', location: 'राज बाग ग्वालियर', mapLink: 'https://maps.app.goo.gl/fT5ZymviyuN3DzCEA' },
       ],
     },
     {
@@ -55,8 +55,8 @@ const EventsSection = () => {
       day: 'सोमवार',
       date: '1 दिसम्बर 2025',
       items: [
-        { time: 'प्रातः 11:00 बजे', name: 'मामेरा (भात)', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
-        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://share.google/iH9qmGrdJfB5ISHm9' },
+        { time: 'प्रातः 11:00 बजे', name: 'मामेरा (भात)', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://maps.app.goo.gl/CmjuX7MwLk5Ec8Wh8' },
+        { time: 'सायं 7:00 बजे से', name: 'आशीर्वाद समारोह माधुर्यभोज', location: 'सेठीया मैरिज गार्डन रतलाम', mapLink: 'https://maps.app.goo.gl/CmjuX7MwLk5Ec8Wh8' },
       ],
     },
   ];

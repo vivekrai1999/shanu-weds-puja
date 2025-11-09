@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import radha from '../assets/svgs/radha.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,11 +46,21 @@ const BaalManuhaarSection = () => {
   return (
     <div 
       ref={sectionRef}
-      className="w-full pt-8 pb-32 px-4" 
+      className="w-full pt-8 pb-32 px-4 relative" 
       style={{ backgroundColor: '#FFC300' }}
     >
+      {/* Radha SVG Background - Mobile Only */}
+      <div 
+        className="absolute inset-0 opacity-10 pointer-events-none lg:hidden"
+        style={{
+          backgroundImage: `url(${radha})`,
+          backgroundSize: '65%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
       {/* Section Heading */}
-      <div className="text-center mb-10">
+      <div className="text-center mb-10 relative z-10">
         <h2 
           ref={headingRef}
           className="text-4xl md:text-5xl mb-8"
@@ -62,7 +73,7 @@ const BaalManuhaarSection = () => {
       {/* Children Names */}
       <div 
         ref={quoteRef}
-        className="max-w-4xl mx-auto text-center"
+        className="max-w-4xl mx-auto text-center relative z-10"
       >
         <p className="text-xl md:text-2xl" style={{ color: '#1A1A1A' }}>
           मितांश, रिधान, जिज्ञासा, निलांशी, नमस्वी, अयांशी, रिशिव, श्री

@@ -110,7 +110,7 @@ const IntroSection = () => {
           className="text-5xl md:text-6xl lg:text-7xl" 
           style={{ fontFamily: "'Rozha One', serif", color: '#FFFFFF' }}
         >
-          शादी का निमंत्रण
+          विवाह निमंत्रण
         </h1>
 
         {/* Marigold with Ganesha */}
