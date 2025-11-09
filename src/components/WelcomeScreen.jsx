@@ -19,7 +19,7 @@ const WelcomeScreen = ({ onOpen }) => {
           <img
             src={ganesha}
             alt="Ganesha"
-            className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto object-contain ganesha-image"
+            className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto object-contain ganesha-image"
           />
         </div>
 
