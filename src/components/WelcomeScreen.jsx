@@ -6,33 +6,33 @@ import CherryBlossom from './CherryBlossom';
 
 const WelcomeScreen = ({ onOpen }) => {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4" style={{ backgroundColor: '#DC3545' }}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4 h-[100vh] overflow-y-auto" style={{ backgroundColor: '#DC3545' }}>
       {/* Cherry Blossom Animation */}
       <div className="absolute inset-0">
         <CherryBlossom id="welcome_blossom_container" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-2xl">
+      <div className="relative z-10 text-center max-w-2xl my-auto">
         {/* Ganesha Image */}
-        <div className="mb-6 animate-bounce-slow">
+        <div className="mb-3 md:mb-4 animate-bounce-slow">
           <img
             src={ganesha}
             alt="Ganesha"
-            className="w-24 h-24 mx-auto object-contain ganesha-image"
+            className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto object-contain ganesha-image"
           />
         </div>
 
         {/* Heading after Ganesha */}
         <h2
-          className="text-4xl md:text-5xl mb-8 animate-fade-in text-white"
+          className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-4 md:mb-6 animate-fade-in text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           उत्सव परिणय बंधन का
         </h2>
 
         {/* Couple Photo with Marigold Frame */}
-        <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto mb-8 animate-fade-in-delay">
+        <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mx-auto mb-4 md:mb-6 animate-fade-in-delay">
           {/* Rotating Marigold Background */}
           <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
             <img
@@ -43,8 +43,8 @@ const WelcomeScreen = ({ onOpen }) => {
           </div>
           
           {/* Circular Couple Photo */}
-          <div className="absolute inset-0 flex items-center justify-center p-12 md:p-16">
-            <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
+          <div className="absolute inset-0 flex items-center justify-center p-10 md:p-12 lg:p-14 xl:p-16">
+            <div className="w-full h-full rounded-full overflow-hidden border-2 md:border-3 lg:border-4 border-white shadow-2xl">
               <img
                 src={couplePhoto}
                 alt="Couple"
@@ -56,7 +56,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Couple Names */}
         <p
-          className="text-4xl md:text-5xl mb-6 animate-fade-in-delay-2 text-white"
+          className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-3 md:mb-4 animate-fade-in-delay-2 text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           दिव्येश संग पूजा
@@ -64,7 +64,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Date */}
         <p
-          className="text-xl md:text-2xl mb-10 animate-fade-in-delay-3 text-white"
+          className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 animate-fade-in-delay-3 text-white"
           style={{ fontFamily: "'Arya', sans-serif" }}
         >
           रविवार, 30 नवम्बर 2025
@@ -73,7 +73,7 @@ const WelcomeScreen = ({ onOpen }) => {
         {/* Open Invitation Button */}
         <button
           onClick={onOpen}
-          className="group relative px-12 py-4 text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
+          className="group relative px-8 md:px-10 lg:px-12 py-3 md:py-4 text-lg md:text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
           style={{
             fontFamily: "'Arya', sans-serif",
           }}

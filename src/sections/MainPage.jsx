@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import IntroSection from './IntroSection'
-import HeroLayout from '../layouts/HeroLayout'
-import EventsLayout from '../layouts/EventsLayout'
-import PeopleLayout from '../layouts/PeopleLayout'
+import HeroSection from './HeroSection'
 import EventsSection from './EventsSection'
+import PeopleSection from './PeopleSection'
 import VenueSection from './VenueSection'
 import TasvireSection from './TasvireSection'
 import BaalManuhaarSection from './BaalManuhaarSection'
@@ -67,13 +66,11 @@ function MainPage() {
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFFFFF" />
       </div>
-      <HeroLayout/>
+      <HeroSection/>
       <div className="-mt-25 relative z-20">
       <WaveSeparatorLayered color="#DC3545" />
       </div>
-      <EventsLayout>
-        <EventsSection/>
-      </EventsLayout>
+      <EventsSection/>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFC300" />
       </div>
@@ -89,7 +86,7 @@ function MainPage() {
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#DC3545" />
       </div>
-      <PeopleLayout/>
+      <PeopleSection/>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFC300" />
       </div>
