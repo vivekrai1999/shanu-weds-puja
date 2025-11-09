@@ -136,13 +136,13 @@ const EventsSection = () => {
           <React.Fragment key={index}>
             <div 
               ref={el => eventRefs.current[index] = el}
-              className="w-full flex relative"
+              className="w-full relative"
             >
-            {/* Odd rows: 70% content (left aligned) + 30% mandala container */}
+            {/* Odd rows: content left aligned, mandala on right */}
             {index % 2 === 0 ? (
               <>
-                {/* Event Content - 70% width, text left aligned */}
-                <div className="w-[70%] text-left pl-8 md:pl-12">
+                {/* Event Content - full width, text left aligned */}
+                <div className="w-full text-left pl-8 md:pl-12 pr-32 md:pr-40">
                   {/* Day - Date Row */}
                   <div className="mb-4">
                     <h3 className="text-3xl text-white">
@@ -273,48 +273,46 @@ const EventsSection = () => {
                   </div>
                 </div>
 
-                {/* Mandala Container - 30% width, positioned at right edge */}
-                <div className="w-[30%] h-64 md:h-80 relative overflow-hidden">
-                  <div 
-                    className="absolute -right-32 md:-right-40 top-1/2 w-64 h-64 md:w-80 md:h-80 animate-spin-slow"
-                    style={{ 
-                      WebkitMaskImage: `url(${mandala})`,
-                      maskImage: `url(${mandala})`,
-                      WebkitMaskSize: 'contain',
-                      maskSize: 'contain',
-                      WebkitMaskRepeat: 'no-repeat',
-                      maskRepeat: 'no-repeat',
-                      WebkitMaskPosition: 'center',
-                      maskPosition: 'center',
-                      backgroundColor: '#FFC300',
-                      transform: 'translateY(-50%)'
-                    }} 
-                  />
-                </div>
+                {/* Mandala - absolutely positioned at right */}
+                <div 
+                  className="absolute top-1/2 w-64 h-64 md:w-80 md:h-80 animate-spin-slow"
+                  style={{ 
+                    right: '-30%',
+                    WebkitMaskImage: `url(${mandala})`,
+                    maskImage: `url(${mandala})`,
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    backgroundColor: '#FFC300',
+                    transform: 'translateY(-50%)'
+                  }} 
+                />
               </>
             ) : (
               <>
-                {/* Mandala Container - 30% width, positioned at left edge */}
-                <div className="w-[30%] h-64 md:h-80 relative overflow-hidden">
-                  <div 
-                    className="absolute -left-32 md:-left-40 top-1/2 w-64 h-64 md:w-80 md:h-80 animate-spin-slow"
-                    style={{ 
-                      WebkitMaskImage: `url(${mandala})`,
-                      maskImage: `url(${mandala})`,
-                      WebkitMaskSize: 'contain',
-                      maskSize: 'contain',
-                      WebkitMaskRepeat: 'no-repeat',
-                      maskRepeat: 'no-repeat',
-                      WebkitMaskPosition: 'center',
-                      maskPosition: 'center',
-                      backgroundColor: '#FFC300',
-                      transform: 'translateY(-50%)'
-                    }} 
-                  />
-                </div>
+                {/* Mandala - absolutely positioned at left */}
+                <div 
+                  className="absolute top-1/2 w-64 h-64 md:w-80 md:h-80 animate-spin-slow"
+                  style={{ 
+                    left: '-30%',
+                    WebkitMaskImage: `url(${mandala})`,
+                    maskImage: `url(${mandala})`,
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    backgroundColor: '#FFC300',
+                    transform: 'translateY(-50%)'
+                  }} 
+                />
 
-                {/* Event Content - 70% width, text right aligned */}
-                <div className="w-[70%] text-right pr-8 md:pr-12">
+                {/* Event Content - full width, text right aligned */}
+                <div className="w-full text-right pr-8 md:pr-12 pl-32 md:pl-40">
                   {/* Day - Date Row */}
                   <div className="mb-4">
                     <h3 className="text-3xl text-white">
