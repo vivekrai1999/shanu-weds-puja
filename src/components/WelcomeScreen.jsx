@@ -15,24 +15,24 @@ const WelcomeScreen = ({ onOpen }) => {
       {/* Content */}
       <div className="relative z-10 text-center max-w-2xl my-auto">
         {/* Ganesha Image */}
-        <div className="mb-6 md:mb-8 animate-bounce-slow">
+        <div className="mb-8 md:mb-12 animate-bounce-slow">
           <img
             src={ganesha}
             alt="Ganesha"
-            className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto object-contain ganesha-image"
+            className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto object-contain ganesha-image"
           />
         </div>
 
         {/* Heading after Ganesha */}
         <h2
-          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-8 md:mb-10 animate-fade-in text-white"
+          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-10 md:mb-14 animate-fade-in text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           उत्सव परिणय बंधन का
         </h2>
 
         {/* Couple Photo with Marigold Frame */}
-        <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mx-auto mb-8 md:mb-10 animate-fade-in-delay">
+        <div className="relative w-72 h-72 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] mx-auto mb-10 md:mb-14 animate-fade-in-delay">
           {/* Rotating Marigold Background */}
           <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
             <img
@@ -43,7 +43,7 @@ const WelcomeScreen = ({ onOpen }) => {
           </div>
           
           {/* Circular Couple Photo */}
-          <div className="absolute inset-0 flex items-center justify-center p-10 md:p-12 lg:p-14 xl:p-16">
+          <div className="absolute inset-0 flex items-center justify-center p-16 md:p-20 lg:p-24 xl:p-28">
             <div className="w-full h-full rounded-full overflow-hidden border-2 md:border-3 lg:border-4 border-white shadow-2xl">
               <img
                 src={couplePhoto}
@@ -56,7 +56,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Couple Names */}
         <p
-          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 md:mb-8 animate-fade-in-delay-2 text-white"
+          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-8 md:mb-12 animate-fade-in-delay-2 text-white"
           style={{ fontFamily: "'Rozha One', serif" }}
         >
           दिव्येश संग पूजा
@@ -64,7 +64,7 @@ const WelcomeScreen = ({ onOpen }) => {
 
         {/* Date */}
         <p
-          className="text-xl md:text-2xl lg:text-3xl mb-10 md:mb-12 animate-fade-in-delay-3 text-white"
+          className="text-2xl md:text-3xl lg:text-4xl mb-12 md:mb-16 animate-fade-in-delay-3 text-white"
           style={{ fontFamily: "'Arya', sans-serif" }}
         >
           रविवार, 30 नवम्बर 2025
