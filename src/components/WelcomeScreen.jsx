@@ -13,88 +13,180 @@ const WelcomeScreen = ({ onOpen }) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-2xl my-auto">
-        {/* Ganesha Image */}
-        <div className="mb-8 md:mb-12 animate-bounce-slow">
-          <img
-            src={ganesha}
-            alt="Ganesha"
-            className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto object-contain ganesha-image"
-          />
-        </div>
-
-        {/* Heading after Ganesha */}
-        <h2
-          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-10 md:mb-14 animate-fade-in text-white"
-          style={{ fontFamily: "'Rozha One', serif" }}
-        >
-          उत्सव परिणय बंधन का
-        </h2>
-
-        {/* Couple Photo with Marigold Frame */}
-        <div className="relative w-72 h-72 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] mx-auto mb-10 md:mb-14 animate-fade-in-delay">
-          {/* Rotating Marigold Background */}
-          <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
+      <div className="relative z-10 text-center max-w-6xl my-auto px-4">
+        {/* Mobile Layout */}
+        <div className="lg:hidden flex flex-col items-center">
+          {/* Ganesha Image */}
+          <div className="mb-6 md:mb-8 animate-bounce-slow">
             <img
-              src={marigold}
-              alt="Marigold"
-              className="w-full h-full object-contain"
+              src={ganesha}
+              alt="Ganesha"
+              className="w-12 h-12 md:w-16 md:h-16 mx-auto object-contain ganesha-image"
             />
           </div>
-          
-          {/* Circular Couple Photo */}
-          <div className="absolute inset-0 flex items-center justify-center p-16 md:p-20 lg:p-24 xl:p-28">
-            <div className="w-full h-full rounded-full overflow-hidden border-2 md:border-3 lg:border-4 border-white shadow-2xl">
+
+          {/* Heading */}
+          <h2
+            className="text-4xl md:text-4xl mb-8 md:mb-10 animate-fade-in text-white"
+            style={{ fontFamily: "'Rozha One', serif" }}
+          >
+            उत्सव परिणय बंधन का
+          </h2>
+
+          {/* Couple Photo with Marigold Frame */}
+          <div className="relative w-72 h-72 md:w-80 md:h-80 mx-auto mb-8 md:mb-10 animate-fade-in-delay">
+            {/* Rotating Marigold Background */}
+            <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
               <img
-                src={couplePhoto}
-                alt="Couple"
-                className="w-full h-full object-cover"
+                src={marigold}
+                alt="Marigold"
+                className="w-full h-full object-contain"
               />
             </div>
+            
+            {/* Circular Couple Photo */}
+            <div className="absolute inset-0 flex items-center justify-center p-16 md:p-20">
+              <div className="w-full h-full rounded-full overflow-hidden border-2 md:border-3 border-white shadow-2xl">
+                <img
+                  src={couplePhoto}
+                  alt="Couple"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
+
+          {/* Couple Names */}
+          <p
+            className="text-4xl md:text-4xl mb-6 md:mb-8 animate-fade-in-delay-2 text-white"
+            style={{ fontFamily: "'Rozha One', serif" }}
+          >
+            दिव्येश संग पूजा
+          </p>
+
+          {/* Date */}
+          <p
+            className="text-2xl md:text-2xl mb-10 md:mb-12 animate-fade-in-delay-3 text-white"
+            style={{ fontFamily: "'Arya', sans-serif" }}
+          >
+            रविवार, 30 नवम्बर 2025
+          </p>
+
+          {/* Open Invitation Button */}
+          <button
+            onClick={onOpen}
+            className="group relative px-8 md:px-10 py-3 md:py-4 text-lg md:text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
+            style={{
+              fontFamily: "'Arya', sans-serif",
+            }}
+          >
+            <span className="relative z-10 flex items-center gap-3">
+              निमंत्रण खोलें
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="animate-bounce"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </span>
+            <div className="absolute inset-0 bg-pink-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+          </button>
         </div>
 
-        {/* Couple Names */}
-        <p
-          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-8 md:mb-12 animate-fade-in-delay-2 text-white"
-          style={{ fontFamily: "'Rozha One', serif" }}
-        >
-          दिव्येश संग पूजा
-        </p>
+        {/* Desktop Layout - Two Columns */}
+        <div className="hidden lg:flex flex-row items-center justify-center gap-12">
+          {/* Left Column - Photo Frame */}
+          <div>
+            {/* Couple Photo with Marigold Frame */}
+            <div className="relative w-96 h-96 xl:w-[28rem] xl:h-[28rem] mx-auto animate-fade-in-delay">
+              {/* Rotating Marigold Background */}
+              <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
+                <img
+                  src={marigold}
+                  alt="Marigold"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              
+              {/* Circular Couple Photo */}
+              <div className="absolute inset-0 flex items-center justify-center p-20 xl:p-24">
+                <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                  <img
+                    src={couplePhoto}
+                    alt="Couple"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-        {/* Date */}
-        <p
-          className="text-2xl md:text-3xl lg:text-4xl mb-12 md:mb-16 animate-fade-in-delay-3 text-white"
-          style={{ fontFamily: "'Arya', sans-serif" }}
-        >
-          रविवार, 30 नवम्बर 2025
-        </p>
+          {/* Right Column - Text Content */}
+          <div className="flex flex-col items-center">
+            {/* Ganesha Image */}
+            <div className="mb-8 animate-bounce-slow">
+              <img
+                src={ganesha}
+                alt="Ganesha"
+                className="w-16 h-16 xl:w-20 xl:h-20 mx-auto object-contain ganesha-image"
+              />
+            </div>
 
-        {/* Open Invitation Button */}
-        <button
-          onClick={onOpen}
-          className="group relative px-8 md:px-10 lg:px-12 py-3 md:py-4 text-lg md:text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
-          style={{
-            fontFamily: "'Arya', sans-serif",
-          }}
-        >
-          <span className="relative z-10 flex items-center gap-3">
-            निमंत्रण खोलें
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="animate-bounce"
+            {/* Heading after Ganesha */}
+            <h2
+              className="text-4xl xl:text-5xl mb-10 animate-fade-in text-white"
+              style={{ fontFamily: "'Rozha One', serif" }}
             >
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </span>
-          <div className="absolute inset-0 bg-pink-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-        </button>
+              उत्सव परिणय बंधन का
+            </h2>
 
+            {/* Couple Names */}
+            <p
+              className="text-4xl xl:text-5xl mb-8 animate-fade-in-delay-2 text-white"
+              style={{ fontFamily: "'Rozha One', serif" }}
+            >
+              दिव्येश संग पूजा
+            </p>
+
+            {/* Date */}
+            <p
+              className="text-2xl xl:text-3xl mb-12 animate-fade-in-delay-3 text-white"
+              style={{ fontFamily: "'Arya', sans-serif" }}
+            >
+              रविवार, 30 नवम्बर 2025
+            </p>
+
+            {/* Open Invitation Button */}
+            <button
+              onClick={onOpen}
+              className="group relative px-12 py-4 text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
+              style={{
+                fontFamily: "'Arya', sans-serif",
+              }}
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                निमंत्रण खोलें
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="animate-bounce"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </span>
+              <div className="absolute inset-0 bg-pink-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Custom Animations */}
