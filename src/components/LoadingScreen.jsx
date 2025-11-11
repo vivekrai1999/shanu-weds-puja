@@ -7,6 +7,8 @@ const LoadingScreen = ({ onLoadComplete }) => {
     // List of all assets to preload
     const assetsToLoad = [
       // Images
+      '/src/assets/images/indian-gate.webp',
+      '/src/assets/images/couple.webp',
       '/src/assets/images/shanu1.webp',
       '/src/assets/images/shanu2.webp',
       '/src/assets/images/shanu3.webp',
@@ -22,6 +24,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
       '/src/assets/images/ganesha.webp',
       '/src/assets/images/marigold.webp',
       // SVGs
+      '/src/assets/svgs/tree.svg',
       '/src/assets/svgs/mandala.svg',
       // Audio
       '/src/assets/audio/audio.mp3',
@@ -81,10 +84,23 @@ const LoadingScreen = ({ onLoadComplete }) => {
           दिव्येश <span style={{ color: '#FFC300' }}>संग</span> पूजा
         </p>
 
-        {/* Rotating Loader */}
-        <div className="flex justify-center">
-          <div className="w-16 h-16 border-4 border-white border-opacity-30 border-t-white rounded-full animate-spin" />
+        {/* Progress Bar */}
+        <div className="w-full max-w-md mx-auto mb-6">
+          <div className="h-3 bg-white bg-opacity-20 rounded-full overflow-hidden border border-white border-opacity-40">
+            <div 
+              className="h-full transition-all duration-300 ease-out rounded-full"
+              style={{ 
+                width: `${progress}%`,
+                background: 'linear-gradient(90deg, #FFC300, #FFD700, #FFC300)'
+              }}
+            />
+          </div>
         </div>
+
+        {/* Progress Percentage */}
+        <p className="text-xl md:text-2xl text-white" style={{ fontFamily: "'Arya', sans-serif" }}>
+          {progress}%
+        </p>
       </div>
     </div>
   );

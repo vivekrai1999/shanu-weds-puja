@@ -1,268 +1,226 @@
-import React from 'react';
-import ganesha from '../assets/images/ganesha.webp';
-import couplePhoto from '../assets/images/shanu4.webp';
-import marigold from '../assets/images/marigold.webp';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import indianGate from '../assets/images/indian-gate.webp';
+import couplePhoto from '../assets/images/couple.webp';
+import Grass from './Grass';
+import FlowerGarden from './FlowerGarden';
+import Butterflies from './Butterflies';
 import CherryBlossom from './CherryBlossom';
+import tree from '../assets/svgs/tree.svg';
 
 const WelcomeScreen = ({ onOpen }) => {
+  const coupleRef = useRef(null);
+  const headingRef = useRef(null);
+  const namesRef = useRef(null);
+  const buttonRef = useRef(null);
+  const treeLeftRef = useRef(null);
+  const treeRightRef = useRef(null);
+
+  useEffect(() => {
+    // Floating animation for couple photo
+    if (coupleRef.current) {
+      gsap.to(coupleRef.current, {
+        y: -15,
+        duration: 2.5,
+        ease: 'power1.inOut',
+        repeat: -1,
+        yoyo: true
+      });
+    }
+
+    // Tree swaying animations
+    if (treeLeftRef.current) {
+      gsap.to(treeLeftRef.current, {
+        rotation: -3,
+        transformOrigin: 'bottom center',
+        duration: 3,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true
+      });
+    }
+
+    if (treeRightRef.current) {
+      gsap.to(treeRightRef.current, {
+        rotation: 3,
+        transformOrigin: 'bottom center',
+        duration: 3.5,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        delay: 0.5
+      });
+    }
+
+    // Text animations
+    const timeline = gsap.timeline();
+    
+    if (headingRef.current) {
+      gsap.set(headingRef.current, { opacity: 0, y: -30 });
+      timeline.to(headingRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      });
+    }
+
+    if (namesRef.current) {
+      gsap.set(namesRef.current, { opacity: 0, y: 20 });
+      timeline.to(namesRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      }, '-=0.5');
+    }
+
+    if (buttonRef.current) {
+      gsap.set(buttonRef.current, { opacity: 0, scale: 0.8 });
+      timeline.to(buttonRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: 'back.out(1.7)'
+      }, '-=0.3');
+    }
+  }, []);
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4 h-[100vh] overflow-y-auto" style={{ backgroundColor: '#DC3545' }}>
+    <div className="fixed inset-0 z-[100] overflow-hidden" style={{ 
+        background: 'linear-gradient(to bottom, #fef9e7 0%, #fdebd0 30%, #fce4bb 60%, #fddca8 100%)'
+      }}>
       {/* Cherry Blossom Animation */}
-      <div className="absolute inset-0">
-        <CherryBlossom id="welcome_blossom_container" />
+      <div className="absolute inset-0" style={{ zIndex: 5 }}>
+        <CherryBlossom id="welcome_cherry_blossom" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center max-w-6xl my-auto px-4">
-        {/* Mobile Layout */}
-        <div className="lg:hidden flex flex-col items-center">
-          {/* Ganesha Image */}
-          <div className="mb-6 md:mb-8 animate-bounce-slow">
-            <img
-              src={ganesha}
-              alt="Ganesha"
-              className="w-12 h-12 md:w-16 md:h-16 mx-auto object-contain ganesha-image"
-            />
-          </div>
+      {/* Custom Cherry Blossom Styles */}
+      <style>{`
+        #welcome_cherry_blossom .petal {
+          transform: scale(0.6);
+        }
+      `}</style>
 
-          {/* Heading */}
-          <h2
-            className="text-4xl md:text-4xl mb-8 md:mb-10 animate-fade-in text-white"
-            style={{ fontFamily: "'Rozha One', serif" }}
-          >
-            उत्सव परिणय बंधन का
-          </h2>
-
-          {/* Couple Photo with Marigold Frame */}
-          <div className="relative w-72 h-72 md:w-80 md:h-80 mx-auto mb-8 md:mb-10 animate-fade-in-delay">
-            {/* Rotating Marigold Background */}
-            <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
-              <img
-                src={marigold}
-                alt="Marigold"
-                className="w-full h-full object-contain"
-              />
-            </div>
+      {/* Indian Gate Frame - Covers entire screen */}
+      <div className="absolute inset-0 flex items-start justify-center z-20">
+        <img
+          src={indianGate}
+          alt="Indian Gate"
+          className="min-w-full w-auto h-auto object-contain drop-shadow-2xl"
+          style={{ 
+            transform: 'scale(1.15, 1.0)',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+          }}
+        />
+      </div>
             
-            {/* Circular Couple Photo */}
-            <div className="absolute inset-0 flex items-center justify-center p-16 md:p-20">
-              <div className="w-full h-full rounded-full overflow-hidden border-2 md:border-3 border-white shadow-2xl">
-                <img
-                  src={couplePhoto}
-                  alt="Couple"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+      {/* Vivah Nimantran Text */}
+      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 text-center" style={{ zIndex: 60 }}>
+        <h1 
+          ref={headingRef}
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-amber-800 mb-4"
+          style={{ 
+            fontFamily: "'Rozha One', serif",
+            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+          }}
+        >
+          विवाह निमंत्रण
+        </h1>
+        
+        {/* Couple Names */}
+        <p 
+          ref={namesRef}
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-amber-900 mb-6"
+          style={{ 
+            fontFamily: "'Rozha One', serif",
+            textShadow: '1px 1px 3px rgba(0,0,0,0.2)'
+          }}
+        >
+          दिव्येश संग पूजा
+        </p>
+        
+        {/* Open Invitation Button */}
+        <button
+          ref={buttonRef}
+          onClick={onOpen}
+          className="mt-4 px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          style={{
+            fontFamily: "'Arya', sans-serif"
+          }}
+        >
+          निमंत्रण खोलें
+        </button>
+      </div>
 
-          {/* Couple Names */}
-          <p
-            className="text-4xl md:text-4xl mb-6 md:mb-8 animate-fade-in-delay-2 text-white"
-            style={{ fontFamily: "'Rozha One', serif" }}
-          >
-            दिव्येश संग पूजा
-          </p>
+      {/* Couple Photo - Bottom center, above grass */}
+      <div ref={coupleRef} className="absolute bottom-[120px] sm:bottom-[140px] md:bottom-[160px] left-1/2 -translate-x-1/2 z-30">
+        <img
+          src={couplePhoto}
+          alt="Couple"
+          className="w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px] xl:w-[480px] h-auto object-contain drop-shadow-2xl"
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)'
+          }}
+        />
+      </div>
 
-          {/* Date */}
-          <p
-            className="text-2xl md:text-2xl mb-10 md:mb-12 animate-fade-in-delay-3 text-white"
-            style={{ fontFamily: "'Arya', sans-serif" }}
-          >
-            रविवार, 30 नवम्बर 2025
-          </p>
-
-          {/* Open Invitation Button */}
-          <button
-            onClick={onOpen}
-            className="group relative px-8 md:px-10 py-3 md:py-4 text-lg md:text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
-            style={{
-              fontFamily: "'Arya', sans-serif",
-            }}
-          >
-            <span className="relative z-10 flex items-center gap-3">
-              निमंत्रण खोलें
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="animate-bounce"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
-            </span>
-            <div className="absolute inset-0 bg-pink-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-          </button>
-        </div>
-
-        {/* Desktop Layout - Two Columns */}
-        <div className="hidden lg:flex flex-row items-center justify-center gap-12">
-          {/* Left Column - Photo Frame */}
-          <div>
-            {/* Couple Photo with Marigold Frame */}
-            <div className="relative w-96 h-96 xl:w-[28rem] xl:h-[28rem] mx-auto animate-fade-in-delay">
-              {/* Rotating Marigold Background */}
-              <div className="absolute inset-0 flex items-center justify-center animate-rotate-slow">
-                <img
-                  src={marigold}
-                  alt="Marigold"
-                  className="w-full h-full object-contain"
+      {/* Grass Component - At the bottom */}
+      <div className="absolute bottom-0 left-0 right-0" style={{ zIndex: 35 }}>
+        <Grass
+          width={typeof window !== 'undefined' ? window.innerWidth * 1.5 : 1800}
+          height={100}
+          totalBlades={60}
+          offset={0}
+          maxHeight={120}
+          showButton={false}
+          containerStyle={{
+            height: '100px',
+            overflow: 'visible'
+          }}
                 />
               </div>
               
-              {/* Circular Couple Photo */}
-              <div className="absolute inset-0 flex items-center justify-center p-20 xl:p-24">
-                <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
-                  <img
-                    src={couplePhoto}
-                    alt="Couple"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Text Content */}
-          <div className="flex flex-col items-center">
-            {/* Ganesha Image */}
-            <div className="mb-8 animate-bounce-slow">
-              <img
-                src={ganesha}
-                alt="Ganesha"
-                className="w-16 h-16 xl:w-20 xl:h-20 mx-auto object-contain ganesha-image"
-              />
-            </div>
-
-            {/* Heading after Ganesha */}
-            <h2
-              className="text-4xl xl:text-5xl mb-10 animate-fade-in text-white"
-              style={{ fontFamily: "'Rozha One', serif" }}
-            >
-              उत्सव परिणय बंधन का
-            </h2>
-
-            {/* Couple Names */}
-            <p
-              className="text-4xl xl:text-5xl mb-8 animate-fade-in-delay-2 text-white"
-              style={{ fontFamily: "'Rozha One', serif" }}
-            >
-              दिव्येश संग पूजा
-            </p>
-
-            {/* Date */}
-            <p
-              className="text-2xl xl:text-3xl mb-12 animate-fade-in-delay-3 text-white"
-              style={{ fontFamily: "'Arya', sans-serif" }}
-            >
-              रविवार, 30 नवम्बर 2025
-            </p>
-
-            {/* Open Invitation Button */}
-            <button
-              onClick={onOpen}
-              className="group relative px-12 py-4 text-xl font-bold text-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse-glow bg-white"
-              style={{
-                fontFamily: "'Arya', sans-serif",
-              }}
-            >
-              <span className="relative z-10 flex items-center gap-3">
-                निमंत्रण खोलें
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="animate-bounce"
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
-              </span>
-              <div className="absolute inset-0 bg-pink-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-            </button>
-          </div>
+      {/* Flower Garden - Multiple instances at the bottom */}
+      <div className="absolute left-0 right-0" style={{ zIndex: 40, bottom: '-80px' }}>
+        <div className="relative w-full">
+          <FlowerGarden />
         </div>
       </div>
 
-      {/* Custom Animations */}
-      <style>{`
-        @keyframes bounce-slow {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes pulse-glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
-          }
-          50% {
-            box-shadow: 0 0 40px rgba(220, 53, 69, 0.8);
-          }
-        }
-        
-        @keyframes rotate-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        
-        .ganesha-image {
-          filter: drop-shadow(0 4px 8px rgba(220, 53, 69, 0.3)) 
-                  brightness(1.1) 
-                  saturate(1.2);
-        }
-        
-        .animate-bounce-slow {
-          animation: bounce-slow 2s ease-in-out infinite;
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 1s ease-out;
-        }
-        
-        .animate-fade-in-delay {
-          animation: fade-in 1s ease-out 0.3s backwards;
-        }
-        
-        .animate-fade-in-delay-2 {
-          animation: fade-in 1s ease-out 0.6s backwards;
-        }
-        
-        .animate-fade-in-delay-3 {
-          animation: fade-in 1s ease-out 0.9s backwards;
-        }
-        
-        .animate-pulse-glow {
-          animation: pulse-glow 2s ease-in-out infinite;
-        }
-        
-        .animate-rotate-slow {
-          animation: rotate-slow 20s linear infinite;
-        }
-      `}</style>
+      <div className="absolute left-[15%] -translate-x-1/2" style={{ zIndex: 41, bottom: '-80px' }}>
+        <FlowerGarden />
+      </div>
+
+      <div className="absolute right-[15%] translate-x-1/2" style={{ zIndex: 41, bottom: '-80px' }}>
+        <FlowerGarden />
+      </div>
+
+      {/* Butterflies - Flying at the bottom */}
+      <div className="butterfly-container absolute left-0 right-0" style={{ zIndex: 50, pointerEvents: 'none', height: '200px', bottom: '-50px', transform: 'scale(0.7)' }}>
+        <Butterflies minY={0} maxY={180} count={2} />
+          </div>
+
+      {/* Tree - Bottom Left */}
+      <div ref={treeLeftRef} className="absolute" style={{ zIndex: 38, left: '-160px', bottom: '-100px' }}>
+        <img
+          src={tree}
+          alt="Tree"
+          className="h-[360px] sm:h-[440px] md:h-[520px] w-auto object-contain"
+        />
+      </div>
+
+      {/* Tree - Bottom Right */}
+      <div ref={treeRightRef} className="absolute" style={{ zIndex: 38, right: '-160px', bottom: '-100px' }}>
+        <img
+          src={tree}
+          alt="Tree"
+          className="h-[360px] sm:h-[440px] md:h-[520px] w-auto object-contain transform scale-x-[-1]"
+        />
+      </div>
+
     </div>
   );
 };
