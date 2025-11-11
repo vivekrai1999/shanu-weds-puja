@@ -4,15 +4,14 @@ import HeroSection from './HeroSection'
 import EventsSection from './EventsSection'
 import PeopleSection from './PeopleSection'
 import VenueSection from './VenueSection'
-import TasvireSection from './TasvireSection'
 import BaalManuhaarSection from './BaalManuhaarSection'
-import EmptySection from './EmptySection'
 import WaveSeparator from '../components/WaveSeprator'
 import WaveSeparatorLayered from '../components/WaveSeparatorLayered'
 import WaveSeparatorFlipped from '../components/WaveSeparatorFlipped'
 import MusicPlayer from '../components/MusicPlayer'
 import LoadingScreen from '../components/LoadingScreen'
 import WelcomeScreen from '../components/WelcomeScreen'
+import { weddingConfetti } from '../utils/confetti'
 
 function MainPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,6 +43,11 @@ function MainPage() {
     // Hide welcome screen with smooth transition
     setTimeout(() => {
       setShowWelcome(false);
+      
+      // Trigger confetti animation after welcome screen is hidden
+      setTimeout(() => {
+        weddingConfetti(10);
+      }, 100);
     }, 300);
   };
 
@@ -75,14 +79,6 @@ function MainPage() {
         <WaveSeparator color="#FFC300" />
       </div>
       <VenueSection />
-      <div className="-mt-14 relative z-20">
-        <WaveSeparator color="#DC3545" />
-      </div>
-      <TasvireSection />
-      <div className="-mt-14 relative z-20">
-        <WaveSeparator color="#FFC300" />
-      </div>
-      <EmptySection />
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#DC3545" />
       </div>
