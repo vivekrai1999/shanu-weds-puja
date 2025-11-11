@@ -247,7 +247,7 @@ const WelcomeScreen = ({ onOpen }) => {
                 color: '#8B4513'
               }}
             >
-              दिव्येश <span className="text-3xl sm:text-5xl">संग</span> पूजा
+              दिव्येश <span className="text-2xl sm:text-4xl">संग</span> पूजा
             </p>
             
             {/* Open Invitation Button - Mobile */}
@@ -321,7 +321,7 @@ const WelcomeScreen = ({ onOpen }) => {
                   color: '#8B4513'
                 }}
               >
-                दिव्येश <span className="text-6xl lg:text-7xl">संग</span> पूजा
+                दिव्येश <span className="text-5xl lg:text-6xl">संग</span> पूजा
               </p>
               
               {/* Open Invitation Button - Desktop */}
