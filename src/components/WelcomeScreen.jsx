@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import indianGate from '../assets/images/indian-gate.webp';
 import couplePhoto from '../assets/images/couple.webp';
+import flowerGarland from '../assets/images/flower.webp';
+import vivhaPng from '../assets/images/vivha.png';
+import nimantranPng from '../assets/images/nimantran.png';
 import Grass from './Grass';
 import FlowerGarden from './FlowerGarden';
 import Butterflies from './Butterflies';
@@ -15,6 +18,13 @@ const WelcomeScreen = ({ onOpen }) => {
   const buttonRef = useRef(null);
   const treeLeftRef = useRef(null);
   const treeRightRef = useRef(null);
+  const flowerL1Ref = useRef(null);
+  const flowerL2Ref = useRef(null);
+  const flowerL3Ref = useRef(null);
+  const flowerR1Ref = useRef(null);
+  const flowerR2Ref = useRef(null);
+  const flowerR3Ref = useRef(null);
+  const flowerCenterRef = useRef(null);
 
   useEffect(() => {
     // Floating animation for couple photo
@@ -52,6 +62,27 @@ const WelcomeScreen = ({ onOpen }) => {
       });
     }
 
+    // Flower garland swaying animations
+    const flowerRefs = [
+      flowerL1Ref, flowerL2Ref, flowerL3Ref,
+      flowerR1Ref, flowerR2Ref, flowerR3Ref,
+      flowerCenterRef
+    ];
+
+    flowerRefs.forEach((ref, index) => {
+      if (ref.current) {
+        gsap.to(ref.current, {
+          rotation: index % 2 === 0 ? 3 : -3,
+          transformOrigin: 'top center',
+          duration: 2.5 + (index * 0.2),
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: index * 0.15
+        });
+      }
+    });
+
     // Text animations
     const timeline = gsap.timeline();
     
@@ -87,23 +118,25 @@ const WelcomeScreen = ({ onOpen }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] overflow-hidden" style={{ 
-        background: 'linear-gradient(to bottom, #fef9e7 0%, #fdebd0 30%, #fce4bb 60%, #fddca8 100%)'
+    <div className="fixed inset-0 z-[100] overflow-y-auto" style={{ 
+        background: 'linear-gradient(to bottom, #fef9e7 0%, #fdebd0 30%, #fce4bb 60%, #fddca8 100%)',
+        minHeight: '100vh'
       }}>
-      {/* Cherry Blossom Animation */}
-      <div className="absolute inset-0" style={{ zIndex: 5 }}>
-        <CherryBlossom id="welcome_cherry_blossom" />
-      </div>
+      {/* Mobile Only - Decorations */}
+      <div className="md:hidden">
+        {/* Cherry Blossom Animation */}
+        <div className="absolute inset-0" style={{ zIndex: 5 }}>
+          <CherryBlossom id="welcome_cherry_blossom" />
+        </div>
 
-      {/* Custom Cherry Blossom Styles */}
-      <style>{`
-        #welcome_cherry_blossom .petal {
-          transform: scale(0.6);
-        }
-      `}</style>
-
-      {/* Indian Gate Frame - Covers entire screen */}
-      <div className="absolute inset-0 flex items-start justify-center z-20">
+        {/* Custom Cherry Blossom Styles */}
+        <style>{`
+          #welcome_cherry_blossom .petal {
+            transform: scale(0.6);
+          }
+        `}</style>
+        {/* Indian Gate Frame - Covers entire screen */}
+        <div className="absolute inset-0 flex items-start justify-center z-20">
         <img
           src={indianGate}
           alt="Indian Gate"
@@ -116,109 +149,252 @@ const WelcomeScreen = ({ onOpen }) => {
         />
       </div>
             
-      {/* Vivah Nimantran Text */}
-      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 text-center" style={{ zIndex: 60 }}>
-        <h1 
-          ref={headingRef}
-          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-amber-800 mb-4"
-          style={{ 
-            fontFamily: "'Rozha One', serif",
-            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-          }}
-        >
-          विवाह निमंत्रण
-        </h1>
-        
-        {/* Couple Names */}
-        <p 
-          ref={namesRef}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-amber-900 mb-6"
-          style={{ 
-            fontFamily: "'Rozha One', serif",
-            textShadow: '1px 1px 3px rgba(0,0,0,0.2)'
-          }}
-        >
-          दिव्येश संग पूजा
-        </p>
-        
-        {/* Open Invitation Button */}
-        <button
-          ref={buttonRef}
-          onClick={onOpen}
-          className="mt-4 px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-          style={{
-            fontFamily: "'Arya', sans-serif"
-          }}
-        >
-          निमंत्रण खोलें
-        </button>
-      </div>
-
-      {/* Couple Photo - Bottom center, above grass */}
-      <div ref={coupleRef} className="absolute bottom-[120px] sm:bottom-[140px] md:bottom-[160px] left-1/2 -translate-x-1/2 z-30">
+        {/* Flower Garland Decorations - Top */}
+        {/* Left side - cascading garlands */}
+      <div ref={flowerL1Ref} className="fixed top-0 left-0" style={{ zIndex: 25 }}>
         <img
-          src={couplePhoto}
-          alt="Couple"
-          className="w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px] xl:w-[480px] h-auto object-contain drop-shadow-2xl"
-          style={{
-            maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)'
-          }}
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[280px] sm:h-[330px] md:h-[380px] w-auto object-contain"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
+        />
+      </div>
+      <div ref={flowerL2Ref} className="fixed left-[17%]" style={{ zIndex: 25, top: '0' }}>
+        <img
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[210px] sm:h-[250px] md:h-[290px] w-auto object-contain"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
+        />
+      </div>
+      <div ref={flowerL3Ref} className="fixed left-[34%]" style={{ zIndex: 25, top: '0' }}>
+        <img
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[140px] sm:h-[170px] md:h-[200px] w-auto object-contain"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
         />
       </div>
 
-      {/* Grass Component - At the bottom */}
-      <div className="absolute bottom-0 left-0 right-0" style={{ zIndex: 35 }}>
-        <Grass
-          width={typeof window !== 'undefined' ? window.innerWidth * 1.5 : 1800}
-          height={100}
-          totalBlades={60}
-          offset={0}
-          maxHeight={120}
-          showButton={false}
-          containerStyle={{
-            height: '100px',
-            overflow: 'visible'
-          }}
-                />
-              </div>
-              
-      {/* Flower Garden - Multiple instances at the bottom */}
-      <div className="absolute left-0 right-0" style={{ zIndex: 40, bottom: '-80px' }}>
-        <div className="relative w-full">
-          <FlowerGarden />
+      {/* Center flower */}
+      <div ref={flowerCenterRef} className="fixed top-0 left-1/2 -translate-x-1/2" style={{ zIndex: 25 }}>
+        <img
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[100px] sm:h-[130px] md:h-[160px] w-auto object-contain"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
+        />
+      </div>
+
+      {/* Right side - cascading garlands */}
+      <div ref={flowerR1Ref} className="fixed top-0 right-0" style={{ zIndex: 25 }}>
+        <img
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[280px] sm:h-[330px] md:h-[380px] w-auto object-contain transform scale-x-[-1]"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
+        />
+      </div>
+      <div ref={flowerR2Ref} className="fixed right-[17%]" style={{ zIndex: 25, top: '0' }}>
+        <img
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[210px] sm:h-[250px] md:h-[290px] w-auto object-contain transform scale-x-[-1]"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
+        />
+      </div>
+      <div ref={flowerR3Ref} className="fixed right-[34%]" style={{ zIndex: 25, top: '0' }}>
+        <img
+          src={flowerGarland}
+          alt="Flower Garland"
+          className="h-[140px] sm:h-[170px] md:h-[200px] w-auto object-contain transform scale-x-[-1]"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
+        />
         </div>
       </div>
 
-      <div className="absolute left-[15%] -translate-x-1/2" style={{ zIndex: 41, bottom: '-80px' }}>
-        <FlowerGarden />
+      {/* Mobile/Tablet Layout */}
+      <div className="md:hidden">
+        {/* Vivah Nimantran Text - Mobile */}
+        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 text-center" style={{ zIndex: 60 }}>
+          <div ref={headingRef} className="mb-4 flex flex-col items-center" style={{ marginLeft: '-30px' }}>
+            <img
+              src={vivhaPng}
+              alt="विवाह"
+              className="w-[60px] sm:w-[85px] h-auto object-contain -mb-8"
+              style={{ 
+                filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
+                marginLeft: '50px'
+              }}
+            />
+            <img
+              src={nimantranPng}
+              alt="निमंत्रण"
+              className="w-[70px] sm:w-[100px] h-auto object-contain"
+              style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }}
+            />
+          </div>
+          
+          {/* Couple Names - Mobile */}
+          <div ref={namesRef} className="mb-1 mt-6 flex flex-col items-center" style={{ 
+            fontFamily: "'Rozha One', serif",
+            color: '#8B4513'
+          }}>
+            <p className="text-4xl sm:text-6xl leading-tight">
+              दिव्येश
+            </p>
+            <p className="text-3xl sm:text-5xl leading-tight">
+              संग
+            </p>
+            <p className="text-4xl sm:text-6xl leading-tight">
+              पूजा
+            </p>
+          </div>
+          
+          {/* Open Invitation Button - Mobile */}
+          <button
+            ref={buttonRef}
+            onClick={onOpen}
+            className="mt-4 px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            style={{
+              fontFamily: "'Arya', sans-serif"
+            }}
+          >
+            निमंत्रण खोलें
+          </button>
+        </div>
+
+        {/* Couple Photo - Mobile */}
+        <div ref={coupleRef} className="absolute bottom-[100px] sm:bottom-[120px] left-1/2 -translate-x-1/2 z-30">
+          <img
+            src={couplePhoto}
+            alt="Couple"
+            className="w-[280px] sm:w-[320px] h-auto object-contain"
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)'
+            }}
+          />
+        </div>
       </div>
 
-      <div className="absolute right-[15%] translate-x-1/2" style={{ zIndex: 41, bottom: '-80px' }}>
-        <FlowerGarden />
-      </div>
-
-      {/* Butterflies - Flying at the bottom */}
-      <div className="butterfly-container absolute left-0 right-0" style={{ zIndex: 50, pointerEvents: 'none', height: '200px', bottom: '-50px', transform: 'scale(0.7)' }}>
-        <Butterflies minY={0} maxY={180} count={2} />
+      {/* Desktop/Tablet Layout */}
+      <div className="hidden md:flex items-center justify-center min-h-screen">
+        <div className="flex items-center gap-12 lg:gap-20 px-8">
+          {/* Couple Photo - Left */}
+          <div>
+            <img
+              src={couplePhoto}
+              alt="Couple"
+              className="w-[400px] lg:w-[500px] xl:w-[600px] h-auto object-contain"
+            />
           </div>
 
-      {/* Tree - Bottom Left */}
-      <div ref={treeLeftRef} className="absolute" style={{ zIndex: 38, left: '-160px', bottom: '-100px' }}>
-        <img
-          src={tree}
-          alt="Tree"
-          className="h-[360px] sm:h-[440px] md:h-[520px] w-auto object-contain"
-        />
+          {/* Content - Right */}
+          <div className="text-center">
+            <div className="mb-6 flex flex-col items-center" style={{ marginLeft: '-30px' }}>
+              <img
+                src={vivhaPng}
+                alt="विवाह"
+                className="w-[110px] lg:w-[130px] h-auto object-contain -mb-8"
+                style={{ 
+                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
+                  marginLeft: '50px'
+                }}
+              />
+              <img
+                src={nimantranPng}
+                alt="निमंत्रण"
+                className="w-[130px] lg:w-[150px] h-auto object-contain"
+                style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }}
+              />
+            </div>
+            
+            {/* Couple Names - Desktop */}
+            <div className="mb-1 mt-6 flex flex-col items-center" style={{ 
+              fontFamily: "'Rozha One', serif",
+              color: '#8B4513'
+            }}>
+              <p className="text-7xl lg:text-8xl leading-tight">
+                दिव्येश
+              </p>
+              <p className="text-6xl lg:text-7xl leading-tight">
+                संग
+              </p>
+              <p className="text-7xl lg:text-8xl leading-tight">
+                पूजा
+              </p>
+            </div>
+            
+            {/* Open Invitation Button - Desktop */}
+            <button
+              onClick={onOpen}
+              className="mt-4 px-10 py-4 text-xl text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              style={{
+                fontFamily: "'Arya', sans-serif"
+              }}
+            >
+              निमंत्रण खोलें
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Tree - Bottom Right */}
-      <div ref={treeRightRef} className="absolute" style={{ zIndex: 38, right: '-160px', bottom: '-100px' }}>
-        <img
-          src={tree}
-          alt="Tree"
-          className="h-[360px] sm:h-[440px] md:h-[520px] w-auto object-contain transform scale-x-[-1]"
-        />
+      {/* Mobile Only - Bottom Decorations */}
+      <div className="md:hidden">
+        {/* Grass Component - At the bottom */}
+        <div className="fixed bottom-0 left-0 right-0" style={{ zIndex: 35 }}>
+          <Grass
+            width={typeof window !== 'undefined' ? window.innerWidth * 1.5 : 1800}
+            height={100}
+            totalBlades={60}
+            offset={0}
+            maxHeight={120}
+            showButton={false}
+            containerStyle={{
+              height: '100px',
+              overflow: 'visible'
+            }}
+          />
+        </div>
+                
+        {/* Flower Garden - Multiple instances at the bottom */}
+        <div className="fixed left-0 right-0" style={{ zIndex: 40, bottom: '-80px' }}>
+          <div className="relative w-full">
+            <FlowerGarden />
+          </div>
+        </div>
+
+        <div className="fixed left-[15%] -translate-x-1/2" style={{ zIndex: 41, bottom: '-80px' }}>
+          <FlowerGarden />
+        </div>
+
+        <div className="fixed right-[15%] translate-x-1/2" style={{ zIndex: 41, bottom: '-80px' }}>
+          <FlowerGarden />
+        </div>
+
+        {/* Butterflies - Flying at the bottom */}
+        <div className="butterfly-container fixed left-0 right-0" style={{ zIndex: 50, pointerEvents: 'none', height: '200px', bottom: '-50px', transform: 'scale(0.7)' }}>
+          <Butterflies minY={0} maxY={180} count={2} />
+        </div>
+
+        {/* Tree - Bottom Left */}
+        <div ref={treeLeftRef} className="fixed" style={{ zIndex: 38, left: '-160px', bottom: '-100px' }}>
+          <img
+            src={tree}
+            alt="Tree"
+            className="h-[360px] sm:h-[440px] w-auto object-contain"
+          />
+        </div>
+
+        {/* Tree - Bottom Right */}
+        <div ref={treeRightRef} className="fixed" style={{ zIndex: 38, right: '-160px', bottom: '-100px' }}>
+          <img
+            src={tree}
+            alt="Tree"
+            className="h-[360px] sm:h-[440px] w-auto object-contain transform scale-x-[-1]"
+          />
+        </div>
       </div>
 
     </div>

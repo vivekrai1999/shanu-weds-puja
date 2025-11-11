@@ -9,6 +9,9 @@ const LoadingScreen = ({ onLoadComplete }) => {
       // Images
       '/src/assets/images/indian-gate.webp',
       '/src/assets/images/couple.webp',
+      '/src/assets/images/flower.webp',
+      '/src/assets/images/vivha.png',
+      '/src/assets/images/nimantran.png',
       '/src/assets/images/shanu1.webp',
       '/src/assets/images/shanu2.webp',
       '/src/assets/images/shanu3.webp',
