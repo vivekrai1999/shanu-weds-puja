@@ -126,7 +126,7 @@ const WelcomeScreen = ({ onOpen }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto" style={{ 
+    <div className="fixed inset-0 z-[100] overflow-y-auto overflow-x-hidden" style={{ 
         background: 'linear-gradient(to bottom, #fef9e7 0%, #fdebd0 30%, #fce4bb 60%, #fddca8 100%)',
         minHeight: '100vh'
       }}>
