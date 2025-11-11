@@ -200,7 +200,7 @@ const CherryBlossom = ({ id = 'blossom_container' }) => {
       />
       <style>{`
         .petal {
-          background: url(http://talktofill.surge.sh/cherry-blossom.png) no-repeat;
+          background: url(https://talktofill.surge.sh/cherry-blossom.png) no-repeat;
           background-size: 200%;
         }
         
