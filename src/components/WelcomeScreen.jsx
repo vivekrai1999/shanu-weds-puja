@@ -215,9 +215,10 @@ const WelcomeScreen = ({ onOpen }) => {
 
       {/* Mobile/Tablet Layout */}
       <div className="md:hidden">
-        {/* Vivah Nimantran Text - Mobile */}
-        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 text-center" style={{ zIndex: 60 }}>
-          <div ref={headingRef} className="mb-4 flex flex-col items-center" style={{ marginLeft: '-30px' }}>
+        {/* Content Container - Mobile */}
+        <div className="absolute top-[18%] left-1/2 -translate-x-1/2 text-center flex flex-col gap-12" style={{ zIndex: 60 }}>
+          {/* Vivah Nimantran Images */}
+          <div ref={headingRef} className="flex flex-col items-center" style={{ marginLeft: '-30px' }}>
             <img
               src={vivhaPng}
               alt="विवाह"
@@ -235,33 +236,32 @@ const WelcomeScreen = ({ onOpen }) => {
             />
           </div>
           
-          {/* Couple Names - Mobile */}
-          <div ref={namesRef} className="mb-1 mt-6 flex flex-col items-center" style={{ 
-            fontFamily: "'Rozha One', serif",
-            color: '#8B4513'
-          }}>
-            <p className="text-4xl sm:text-6xl leading-tight">
-              दिव्येश
+          {/* Names and Button */}
+          <div className="flex flex-col items-center gap-4">
+            {/* Couple Names - Mobile */}
+            <p 
+              ref={namesRef}
+              className="text-4xl sm:text-6xl"
+              style={{ 
+                fontFamily: "'Rozha One', serif",
+                color: '#8B4513'
+              }}
+            >
+              दिव्येश <span className="text-3xl sm:text-5xl">संग</span> पूजा
             </p>
-            <p className="text-3xl sm:text-5xl leading-tight">
-              संग
-            </p>
-            <p className="text-4xl sm:text-6xl leading-tight">
-              पूजा
-            </p>
+            
+            {/* Open Invitation Button - Mobile */}
+            <button
+              ref={buttonRef}
+              onClick={onOpen}
+              className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              style={{
+                fontFamily: "'Arya', sans-serif"
+              }}
+            >
+              निमंत्रण खोलें
+            </button>
           </div>
-          
-          {/* Open Invitation Button - Mobile */}
-          <button
-            ref={buttonRef}
-            onClick={onOpen}
-            className="mt-4 px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            style={{
-              fontFamily: "'Arya', sans-serif"
-            }}
-          >
-            निमंत्रण खोलें
-          </button>
         </div>
 
         {/* Couple Photo - Mobile */}
@@ -291,8 +291,9 @@ const WelcomeScreen = ({ onOpen }) => {
           </div>
 
           {/* Content - Right */}
-          <div className="text-center">
-            <div className="mb-6 flex flex-col items-center" style={{ marginLeft: '-30px' }}>
+          <div className="text-center flex flex-col gap-16">
+            {/* Vivah Nimantran Images */}
+            <div className="flex flex-col items-center" style={{ marginLeft: '-30px' }}>
               <img
                 src={vivhaPng}
                 alt="विवाह"
@@ -310,32 +311,30 @@ const WelcomeScreen = ({ onOpen }) => {
               />
             </div>
             
-            {/* Couple Names - Desktop */}
-            <div className="mb-1 mt-6 flex flex-col items-center" style={{ 
-              fontFamily: "'Rozha One', serif",
-              color: '#8B4513'
-            }}>
-              <p className="text-7xl lg:text-8xl leading-tight">
-                दिव्येश
+            {/* Names and Button */}
+            <div className="flex flex-col items-center gap-6">
+              {/* Couple Names - Desktop */}
+              <p 
+                className="text-7xl lg:text-8xl"
+                style={{ 
+                  fontFamily: "'Rozha One', serif",
+                  color: '#8B4513'
+                }}
+              >
+                दिव्येश <span className="text-6xl lg:text-7xl">संग</span> पूजा
               </p>
-              <p className="text-6xl lg:text-7xl leading-tight">
-                संग
-              </p>
-              <p className="text-7xl lg:text-8xl leading-tight">
-                पूजा
-              </p>
+              
+              {/* Open Invitation Button - Desktop */}
+              <button
+                onClick={onOpen}
+                className="px-10 py-4 text-xl text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                style={{
+                  fontFamily: "'Arya', sans-serif"
+                }}
+              >
+                निमंत्रण खोलें
+              </button>
             </div>
-            
-            {/* Open Invitation Button - Desktop */}
-            <button
-              onClick={onOpen}
-              className="mt-4 px-10 py-4 text-xl text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              style={{
-                fontFamily: "'Arya', sans-serif"
-              }}
-            >
-              निमंत्रण खोलें
-            </button>
           </div>
         </div>
       </div>
