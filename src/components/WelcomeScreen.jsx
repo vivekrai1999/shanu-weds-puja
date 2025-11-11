@@ -107,13 +107,21 @@ const WelcomeScreen = ({ onOpen }) => {
     }
 
     if (buttonRef.current) {
-      gsap.set(buttonRef.current, { opacity: 0, scale: 0.8 });
+      gsap.set(buttonRef.current, { opacity: 0 });
       timeline.to(buttonRef.current, {
         opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        ease: 'back.out(1.7)'
-      }, '-=0.3');
+        duration: 1.5,
+        ease: 'power2.out'
+      }, '-=0.4');
+      
+      // Breathing animation - scale pulse
+      timeline.to(buttonRef.current, {
+        scale: 1.08,
+        duration: 1.8,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true
+      }, '+=0.8');
     }
   }, []);
 
@@ -254,7 +262,7 @@ const WelcomeScreen = ({ onOpen }) => {
             <button
               ref={buttonRef}
               onClick={onOpen}
-              className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-colors duration-300"
               style={{
                 fontFamily: "'Arya', sans-serif"
               }}
@@ -327,7 +335,7 @@ const WelcomeScreen = ({ onOpen }) => {
               {/* Open Invitation Button - Desktop */}
               <button
                 onClick={onOpen}
-                className="px-10 py-4 text-xl text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="px-10 py-4 text-xl text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-colors duration-300"
                 style={{
                   fontFamily: "'Arya', sans-serif"
                 }}
