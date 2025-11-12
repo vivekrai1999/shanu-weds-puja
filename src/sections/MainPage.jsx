@@ -11,7 +11,7 @@ import WaveSeparatorFlipped from '../components/WaveSeparatorFlipped'
 import MusicPlayer from '../components/MusicPlayer'
 import LoadingScreen from '../components/LoadingScreen'
 import WelcomeScreen from '../components/WelcomeScreen'
-import { weddingConfetti } from '../utils/confetti'
+import { basicAnimation, openAnimation } from '../utils/confetti'
 
 function MainPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,10 +44,14 @@ function MainPage() {
     setTimeout(() => {
       setShowWelcome(false);
       
-      // Trigger confetti animation after welcome screen is hidden
+      // Trigger confetti sequence as documented:
+      // t=0s: Standard confetti burst from bottom (upward)
+      basicAnimation();
+      
+      // t=1.5s: Pink heart petals fall from top for 15 seconds
       setTimeout(() => {
-        weddingConfetti(10);
-      }, 100);
+        openAnimation(15);
+      }, 1500);
     }, 300);
   };
 
