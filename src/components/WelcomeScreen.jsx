@@ -126,7 +126,8 @@ const WelcomeScreen = ({ onOpen }) => {
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto overflow-x-hidden" style={{ 
         background: 'linear-gradient(to bottom, #fef9e7 0%, #fdebd0 30%, #fce4bb 60%, #fddca8 100%)',
-        minHeight: '100vh'
+        minHeight: '810px'
+        // minHeight: '100vh'
       }}>
       {/* Mobile Only - Decorations */}
       <div className="md:hidden">
