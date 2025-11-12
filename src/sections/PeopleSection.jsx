@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 const PeopleSection = () => {
   const sectionRef = useRef(null);
   const groupRefs = useRef([]);
-  const [sonalTapCount, setSonalTapCount] = useState(0);
   const peopleGroups = [
     {
       title: 'विनीत',
@@ -157,13 +156,10 @@ const PeopleSection = () => {
                       >
                         {parts[0]}
                         <span
-                          onClick={() => {
-                            setSonalTapCount(prev => prev + 1);
-                            emojiBlast('💩', 2);
-                          }}
+                          onClick={() => emojiBlast('💩', 2)}
                           style={{ cursor: 'pointer', userSelect: 'none' }}
                         >
-                          {sonalTapCount >= 5 ? '💩' : 'सोनल'}
+                          सोनल
                         </span>
                         {parts[1]}
                       </div>
