@@ -3,8 +3,6 @@ import { gsap } from 'gsap';
 import indianGate from '../assets/images/indian-gate.webp';
 import couplePhoto from '../assets/images/couple.webp';
 import flowerGarland from '../assets/images/flower.webp';
-import vivhaPng from '../assets/images/vivha.png';
-import nimantranPng from '../assets/images/nimantran.png';
 import Grass from './Grass';
 import FlowerGarden from './FlowerGarden';
 import Butterflies from './Butterflies';
@@ -224,39 +222,56 @@ const WelcomeScreen = ({ onOpen }) => {
       {/* Mobile/Tablet Layout */}
       <div className="md:hidden">
         {/* Content Container - Mobile */}
-        <div className="absolute top-[18%] left-1/2 -translate-x-1/2 text-center flex flex-col gap-12" style={{ zIndex: 60 }}>
-          {/* Vivah Nimantran Images */}
-          <div ref={headingRef} className="flex flex-col items-center" style={{ marginLeft: '-30px' }}>
-            <img
-              src={vivhaPng}
-              alt="विवाह"
-              className="w-[60px] sm:w-[85px] h-auto object-contain -mb-8"
+        <div className="absolute top-[18%] left-1/2 -translate-x-1/2 text-center flex flex-col gap-8" style={{ zIndex: 60 }}>
+          {/* Vivah Nimantran Text */}
+          <div ref={headingRef}>
+            <h1 
+              className="text-3xl sm:text-5xl"
               style={{ 
-                filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
-                marginLeft: '50px'
+                fontFamily: "'Tillana', cursive",
+                color: '#8B4513',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
               }}
-            />
-            <img
-              src={nimantranPng}
-              alt="निमंत्रण"
-              className="w-[70px] sm:w-[100px] h-auto object-contain"
-              style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }}
-            />
+            >
+              विवाह निमंत्रण
+            </h1>
           </div>
           
           {/* Names and Button */}
           <div className="flex flex-col items-center gap-4">
             {/* Couple Names - Mobile */}
-            <p 
-              ref={namesRef}
-              className="text-4xl sm:text-6xl"
-              style={{ 
-                fontFamily: "'Rozha One', serif",
-                color: '#8B4513'
-              }}
-            >
-              दिव्येश <span className="text-2xl sm:text-4xl">संग</span> पूजा
-            </p>
+            <div ref={namesRef} className="flex flex-col items-center">
+              <p 
+                className="text-4xl sm:text-6xl"
+                style={{ 
+                  fontFamily: "'Rozha One', serif",
+                  color: '#8B4513',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                }}
+              >
+                दिव्येश
+              </p>
+              <p 
+                className="text-2xl sm:text-3xl"
+                style={{ 
+                  fontFamily: "'Rozha One', serif",
+                  color: '#8B4513',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                }}
+              >
+                संग
+              </p>
+              <p 
+                className="text-4xl sm:text-6xl"
+                style={{ 
+                  fontFamily: "'Rozha One', serif",
+                  color: '#8B4513',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                }}
+              >
+                पूजा
+              </p>
+            </div>
             
             {/* Open Invitation Button - Mobile */}
             <button
@@ -300,37 +315,55 @@ const WelcomeScreen = ({ onOpen }) => {
 
           {/* Content - Right */}
           <div className="text-center flex flex-col gap-16">
-            {/* Vivah Nimantran Images */}
-            <div className="flex flex-col items-center" style={{ marginLeft: '-30px' }}>
-              <img
-                src={vivhaPng}
-                alt="विवाह"
-                className="w-[110px] lg:w-[130px] h-auto object-contain -mb-8"
+            {/* Vivah Nimantran Text */}
+            <div>
+              <h1 
+                className="text-7xl lg:text-8xl"
                 style={{ 
-                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
-                  marginLeft: '50px'
+                  fontFamily: "'Tillana', cursive",
+                  color: '#8B4513',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
                 }}
-              />
-              <img
-                src={nimantranPng}
-                alt="निमंत्रण"
-                className="w-[130px] lg:w-[150px] h-auto object-contain"
-                style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }}
-              />
+              >
+                विवाह निमंत्रण
+              </h1>
             </div>
             
             {/* Names and Button */}
             <div className="flex flex-col items-center gap-6">
               {/* Couple Names - Desktop */}
-              <p 
-                className="text-7xl lg:text-8xl"
-                style={{ 
-                  fontFamily: "'Rozha One', serif",
-                  color: '#8B4513'
-                }}
-              >
-                दिव्येश <span className="text-5xl lg:text-6xl">संग</span> पूजा
-              </p>
+              <div className="flex flex-col items-center">
+                <p 
+                  className="text-7xl lg:text-8xl"
+                  style={{ 
+                    fontFamily: "'Rozha One', serif",
+                    color: '#8B4513',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                  }}
+                >
+                  दिव्येश
+                </p>
+                <p 
+                  className="text-4xl lg:text-5xl"
+                  style={{ 
+                    fontFamily: "'Rozha One', serif",
+                    color: '#8B4513',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                  }}
+                >
+                  संग
+                </p>
+                <p 
+                  className="text-7xl lg:text-8xl"
+                  style={{ 
+                    fontFamily: "'Rozha One', serif",
+                    color: '#8B4513',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                  }}
+                >
+                  पूजा
+                </p>
+              </div>
               
               {/* Open Invitation Button - Desktop */}
               <button
