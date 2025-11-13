@@ -148,7 +148,7 @@ const IntroSection = () => {
           className="text-2xl md:text-3xl" 
           style={{ fontFamily: "'Arya', sans-serif", color: '#FFFFFF' }}
         >
-          <p>रविवार, 30 नवम्बर 2025</p>
+          <p></p>
         </div>
       </div>
     </div>
