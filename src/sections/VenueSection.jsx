@@ -1,46 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useRef } from 'react';
+import { useScrollAnimator } from '../hooks/useScrollAnimator';
 
 const VenueSection = () => {
   const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const contentRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading animation
-      gsap.from(headingRef.current, {
-        opacity: 0,
-        y: -50,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Content fade in
-      gsap.from(contentRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useScrollAnimator(sectionRef, { threshold: 0.2 });
 
   return (
     <div 
@@ -51,9 +14,9 @@ const VenueSection = () => {
       {/* Section Heading */}
       <div className="text-center mb-6">
         <h2 
-          ref={headingRef}
           className="text-4xl md:text-5xl mb-4"
           style={{ fontFamily: "'Rozha One', serif", color: '#DC3545' }}
+          data-animate="fade-down"
         >
           प्रीतिभोज
         </h2>
@@ -61,8 +24,9 @@ const VenueSection = () => {
 
       {/* Content */}
       <div 
-        ref={contentRef}
         className="max-w-4xl mx-auto text-center"
+        data-animate="fade-up"
+        data-animate-delay="150ms"
       >
         <div className="space-y-6">
           {/* Venue Details */}
@@ -74,6 +38,7 @@ const VenueSection = () => {
               href="https://maps.app.goo.gl/CmjuX7MwLk5Ec8Wh8"
               target="_blank"
               rel="noopener noreferrer"
+              data-offline-disabled="true"
               className="inline-flex items-center gap-2 mt-3 px-6 py-3 text-base text-white rounded-full transition-all duration-300 hover:scale-105"
               style={{ backgroundColor: '#DC3545' }}
             >

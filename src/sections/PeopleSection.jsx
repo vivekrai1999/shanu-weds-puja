@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef } from 'react';
 import FloralDivider from '../components/FloralDivider';
 import { emojiBlast } from '../utils/confetti';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollAnimator } from '../hooks/useScrollAnimator';
 
 const PeopleSection = () => {
   const sectionRef = useRef(null);
-  const groupRefs = useRef([]);
+  useScrollAnimator(sectionRef, { threshold: 0.2 });
   const peopleGroups = [
     {
       title: 'विनीत',
@@ -69,55 +66,6 @@ const PeopleSection = () => {
     },
   ];
 
-  useEffect(() => {
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      const ctx = gsap.context(() => {
-        // Filter out null refs
-        const validRefs = groupRefs.current.filter(el => el !== null);
-        
-        console.log('People Section - Valid refs:', validRefs.length);
-        
-        validRefs.forEach((groupEl, index) => {
-          const isEven = index % 2 === 0;
-          
-          // Set initial state
-          gsap.set(groupEl, {
-            opacity: 0,
-            x: isEven ? -100 : 100,
-            scale: 0.9,
-          });
-          
-          // Create animation
-          gsap.to(groupEl, {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: groupEl,
-              start: 'top 85%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse',
-              markers: false, // Set to true for debugging
-              onEnter: () => console.log(`Group ${index} entered`),
-            },
-          });
-        });
-        
-        // Refresh ScrollTrigger after setup
-        ScrollTrigger.refresh();
-      }, sectionRef);
-
-      return () => {
-        ctx.revert();
-      };
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div 
       ref={sectionRef}
@@ -130,12 +78,9 @@ const PeopleSection = () => {
         {peopleGroups.map((group, index) => (
           <React.Fragment key={index}>
             <div 
-              ref={el => {
-                if (el && !groupRefs.current.includes(el)) {
-                  groupRefs.current[index] = el;
-                }
-              }}
               className="flex-1 min-w-[280px] max-w-[400px]"
+              data-animate={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+              data-animate-delay={`${Math.min(index * 80, 400)}ms`}
             >
               {/* Subheading */}
               <h3 className="text-3xl mb-4 text-center" style={{ color: '#FFC300' }}>

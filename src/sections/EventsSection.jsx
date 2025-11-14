@@ -1,17 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef } from 'react';
 import FloralDivider from '../components/FloralDivider';
 import CountdownTimer from '../components/CountdownTimer';
 import mandala from '../assets/svgs/mandala.svg';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollAnimator } from '../hooks/useScrollAnimator';
 
 const EventsSection = () => {
   const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const timerRef = useRef(null);
-  const eventRefs = useRef([]);
   const events = [
     {
       day: 'बुधवार',
@@ -61,55 +55,7 @@ const EventsSection = () => {
     },
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading animation
-      gsap.from(headingRef.current, {
-        opacity: 0,
-        y: -50,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Timer animation
-      gsap.from(timerRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.8,
-        delay: 0.3,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Stagger event items
-      eventRefs.current.forEach((eventEl, index) => {
-        if (eventEl) {
-          gsap.from(eventEl, {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: eventEl,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          });
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useScrollAnimator(sectionRef, { threshold: 0.25 });
 
   return (
     <div 
@@ -120,12 +66,12 @@ const EventsSection = () => {
       {/* Section Heading */}
       <div className="text-center mb-16">
         <h2 
-          ref={headingRef}
           className="text-4xl md:text-5xl text-white mb-8"
+          data-animate="fade-down"
         >
           मांगलिक पलों का सफर
         </h2>
-        <div ref={timerRef}>
+        <div data-animate="scale-in" data-animate-delay="150ms">
           <CountdownTimer weddingDate="2025-11-30T10:30:00" />
         </div>
       </div>
@@ -135,8 +81,9 @@ const EventsSection = () => {
         {events.map((event, index) => (
           <React.Fragment key={index}>
             <div 
-              ref={el => eventRefs.current[index] = el}
               className="w-full relative"
+              data-animate="fade-up"
+              data-animate-delay={`${Math.min(index * 100, 400)}ms`}
             >
             {/* Odd rows: content left aligned, mandala on right */}
             {index % 2 === 0 ? (
@@ -172,6 +119,7 @@ const EventsSection = () => {
                                       href={item.mapLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
+                                      data-offline-disabled="true"
                                       className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                       title="स्थान देखें"
                                     >
@@ -210,6 +158,7 @@ const EventsSection = () => {
                                   href={event.items[2].mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  data-offline-disabled="true"
                                   className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
@@ -248,6 +197,7 @@ const EventsSection = () => {
                                   href={item.mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  data-offline-disabled="true"
                                   className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
@@ -341,7 +291,8 @@ const EventsSection = () => {
                                     <a
                                       href={item.mapLink}
                                       target="_blank"
-                                      rel="noopener noreferrer"
+                                    rel="noopener noreferrer"
+                                    data-offline-disabled="true"
                                       className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                       title="स्थान देखें"
                                     >
@@ -380,6 +331,7 @@ const EventsSection = () => {
                                   href={event.items[2].mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  data-offline-disabled="true"
                                   className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >
@@ -418,6 +370,7 @@ const EventsSection = () => {
                                   href={item.mapLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  data-offline-disabled="true"
                                   className="transition-all duration-300 hover:scale-125 animate-bounce-diagonal"
                                   title="स्थान देखें"
                                 >

@@ -7,11 +7,11 @@ import VenueSection from './VenueSection'
 import BaalManuhaarSection from './BaalManuhaarSection'
 import WaveSeparator from '../components/WaveSeprator'
 import WaveSeparatorLayered from '../components/WaveSeparatorLayered'
-import WaveSeparatorFlipped from '../components/WaveSeparatorFlipped'
 import MusicPlayer from '../components/MusicPlayer'
 import LoadingScreen from '../components/LoadingScreen'
 import WelcomeScreen from '../components/WelcomeScreen'
 import { basicAnimation, openAnimation } from '../utils/confetti'
+import { browserSupport } from '../utils/browserSupport'
 
 function MainPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,6 +32,12 @@ function MainPage() {
       document.documentElement.style.overflow = '';
     };
   }, [showWelcome]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      browserSupport.refreshSections();
+    }
+  }, [isLoaded, showWelcome]);
 
   const handleOpenInvitation = () => {
     // Reset scroll position to top
@@ -70,27 +76,39 @@ function MainPage() {
     
     {/* Main Content - Always rendered but hidden behind welcome screen */}
     <div className={`transition-opacity duration-500 ${showWelcome ? 'opacity-0' : 'opacity-100'}`}>
-      <IntroSection />
+      <section data-theme-color="#DC3545" className="section-shell block w-full">
+        <IntroSection />
+      </section>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFFFFF" />
       </div>
-      <HeroSection/>
+      <section data-theme-color="#FFFFFF" className="section-shell block w-full">
+        <HeroSection/>
+      </section>
       <div className="-mt-25 relative z-20">
       <WaveSeparatorLayered color="#DC3545" />
       </div>
-      <EventsSection/>
+      <section data-theme-color="#DC3545" className="section-shell block w-full">
+        <EventsSection/>
+      </section>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFC300" />
       </div>
-      <VenueSection />
+      <section data-theme-color="#FFC300" className="section-shell block w-full">
+        <VenueSection />
+      </section>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#DC3545" />
       </div>
-      <PeopleSection/>
+      <section data-theme-color="#DC3545" className="section-shell block w-full">
+        <PeopleSection/>
+      </section>
       <div className="-mt-14 relative z-20">
         <WaveSeparator color="#FFC300" />
       </div>
-      <BaalManuhaarSection />
+      <section data-theme-color="#FFC300" className="section-shell block w-full">
+        <BaalManuhaarSection />
+      </section>
     </div>
   </>
   )
