@@ -1,15 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 
 const Butterflies = ({ minY = 0, maxY = 200, count = 5 }) => {
-  const containerRef = useRef(null);
+  const anchorRef = useRef(null);
   const butterfliesRef = useRef([]);
 
   useEffect(() => {
-    // Find the parent container
-    const container = document.querySelector('.butterfly-container');
+    const container = anchorRef.current?.parentElement;
     if (!container) {
       console.error('Butterfly container not found');
-      return;
+      return undefined;
     }
 
     const colors = ['#DC3545', '#FFC300', '#FF1493', '#FFD700', '#FF69B4', '#FFA500', '#DC143C'];
@@ -116,7 +115,7 @@ const Butterflies = ({ minY = 0, maxY = 200, count = 5 }) => {
     let animationFrameId;
 
     const initTimeout = setTimeout(() => {
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < count; i += 1) {
         const butterfly = new Butterfly(i);
         butterfliesRef.current.push(butterfly);
       }
@@ -133,7 +132,7 @@ const Butterflies = ({ minY = 0, maxY = 200, count = 5 }) => {
     };
   }, [minY, maxY, count]);
 
-  return null;
+  return <span ref={anchorRef} style={{ display: 'none' }} aria-hidden="true" />;
 };
 
 export default Butterflies;

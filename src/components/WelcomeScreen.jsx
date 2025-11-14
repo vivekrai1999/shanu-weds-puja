@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import React, { useEffect, useState } from 'react';
 import indianGate from '../assets/images/indian-gate.webp';
 import couplePhoto from '../assets/images/couple.webp';
 import flowerGarland from '../assets/images/flower.webp';
@@ -10,118 +9,16 @@ import CherryBlossom from './CherryBlossom';
 import tree from '../assets/svgs/tree.svg';
 
 const WelcomeScreen = ({ onOpen }) => {
-  const coupleRef = useRef(null);
-  const headingRef = useRef(null);
-  const namesRef = useRef(null);
-  const buttonRef = useRef(null);
-  const treeLeftRef = useRef(null);
-  const treeRightRef = useRef(null);
-  const flowerL1Ref = useRef(null);
-  const flowerL2Ref = useRef(null);
-  const flowerL3Ref = useRef(null);
-  const flowerR1Ref = useRef(null);
-  const flowerR2Ref = useRef(null);
-  const flowerR3Ref = useRef(null);
-  const flowerCenterRef = useRef(null);
+  const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
-    // Floating animation for couple photo
-    if (coupleRef.current) {
-      gsap.to(coupleRef.current, {
-        y: -15,
-        duration: 2.5,
-        ease: 'power1.inOut',
-        repeat: -1,
-        yoyo: true
-      });
-    }
-
-    // Tree swaying animations
-    if (treeLeftRef.current) {
-      gsap.to(treeLeftRef.current, {
-        rotation: -3,
-        transformOrigin: 'bottom center',
-        duration: 3,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true
-      });
-    }
-
-    if (treeRightRef.current) {
-      gsap.to(treeRightRef.current, {
-        rotation: 3,
-        transformOrigin: 'bottom center',
-        duration: 3.5,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        delay: 0.5
-      });
-    }
-
-    // Flower garland swaying animations
-    const flowerRefs = [
-      flowerL1Ref, flowerL2Ref, flowerL3Ref,
-      flowerR1Ref, flowerR2Ref, flowerR3Ref,
-      flowerCenterRef
-    ];
-
-    flowerRefs.forEach((ref, index) => {
-      if (ref.current) {
-        gsap.to(ref.current, {
-          rotation: index % 2 === 0 ? 3 : -3,
-          transformOrigin: 'top center',
-          duration: 2.5 + (index * 0.2),
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-          delay: index * 0.15
-        });
-      }
-    });
-
-    // Text animations
-    const timeline = gsap.timeline();
-    
-    if (headingRef.current) {
-      gsap.set(headingRef.current, { opacity: 0, y: -30 });
-      timeline.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      });
-    }
-
-    if (namesRef.current) {
-      gsap.set(namesRef.current, { opacity: 0, y: 20 });
-      timeline.to(namesRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      }, '-=0.5');
-    }
-
-    if (buttonRef.current) {
-      gsap.set(buttonRef.current, { opacity: 0 });
-      timeline.to(buttonRef.current, {
-        opacity: 1,
-        duration: 1.5,
-        ease: 'power2.out'
-      }, '-=0.4');
-      
-      // Breathing animation - scale pulse
-      timeline.to(buttonRef.current, {
-        scale: 1.08,
-        duration: 1.8,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true
-      }, '+=0.8');
-    }
+    const timer = setTimeout(() => setContentVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
+
+  const baseReveal = 'transition-all duration-700 ease-out';
+  const revealUpClass = contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6';
+  const revealScaleClass = contentVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95';
 
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto overflow-x-hidden" style={{ 
@@ -158,7 +55,16 @@ const WelcomeScreen = ({ onOpen }) => {
             
         {/* Flower Garland Decorations - Top */}
         {/* Left side - cascading garlands */}
-      <div ref={flowerL1Ref} className="fixed top-0 left-0" style={{ zIndex: 25 }}>
+      <div
+        className="fixed top-0 left-0 sway-soft"
+        style={{
+          zIndex: 25,
+          '--sway-origin': 'top center',
+          '--sway-duration': '2.8s',
+          '--sway-from': '-4deg',
+          '--sway-to': '4deg',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -166,7 +72,18 @@ const WelcomeScreen = ({ onOpen }) => {
           style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
         />
       </div>
-      <div ref={flowerL2Ref} className="fixed left-[17%]" style={{ zIndex: 25, top: '0' }}>
+      <div
+        className="fixed left-[17%] sway-soft"
+        style={{
+          zIndex: 25,
+          top: '0',
+          '--sway-origin': 'top center',
+          '--sway-duration': '3.1s',
+          '--sway-from': '-3deg',
+          '--sway-to': '3deg',
+          animationDelay: '0.1s',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -174,7 +91,18 @@ const WelcomeScreen = ({ onOpen }) => {
           style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
         />
       </div>
-      <div ref={flowerL3Ref} className="fixed left-[34%]" style={{ zIndex: 25, top: '0' }}>
+      <div
+        className="fixed left-[34%] sway-soft"
+        style={{
+          zIndex: 25,
+          top: '0',
+          '--sway-origin': 'top center',
+          '--sway-duration': '3.4s',
+          '--sway-from': '-2deg',
+          '--sway-to': '2deg',
+          animationDelay: '0.2s',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -184,7 +112,17 @@ const WelcomeScreen = ({ onOpen }) => {
       </div>
 
       {/* Center flower */}
-      <div ref={flowerCenterRef} className="fixed top-0 left-1/2 -translate-x-1/2" style={{ zIndex: 25 }}>
+      <div
+        className="fixed top-0 left-1/2 -translate-x-1/2 sway-soft"
+        style={{
+          zIndex: 25,
+          '--sway-origin': 'top center',
+          '--sway-duration': '3s',
+          '--sway-from': '-2deg',
+          '--sway-to': '2deg',
+          animationDelay: '0.15s',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -194,7 +132,16 @@ const WelcomeScreen = ({ onOpen }) => {
       </div>
 
       {/* Right side - cascading garlands */}
-      <div ref={flowerR1Ref} className="fixed top-0 right-0" style={{ zIndex: 25 }}>
+      <div
+        className="fixed top-0 right-0 sway-soft"
+        style={{
+          zIndex: 25,
+          '--sway-origin': 'top center',
+          '--sway-duration': '2.8s',
+          '--sway-from': '4deg',
+          '--sway-to': '-4deg',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -202,7 +149,18 @@ const WelcomeScreen = ({ onOpen }) => {
           style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
         />
       </div>
-      <div ref={flowerR2Ref} className="fixed right-[17%]" style={{ zIndex: 25, top: '0' }}>
+      <div
+        className="fixed right-[17%] sway-soft"
+        style={{
+          zIndex: 25,
+          top: '0',
+          '--sway-origin': 'top center',
+          '--sway-duration': '3.1s',
+          '--sway-from': '3deg',
+          '--sway-to': '-3deg',
+          animationDelay: '0.1s',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -210,7 +168,18 @@ const WelcomeScreen = ({ onOpen }) => {
           style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
         />
       </div>
-      <div ref={flowerR3Ref} className="fixed right-[34%]" style={{ zIndex: 25, top: '0' }}>
+      <div
+        className="fixed right-[34%] sway-soft"
+        style={{
+          zIndex: 25,
+          top: '0',
+          '--sway-origin': 'top center',
+          '--sway-duration': '3.4s',
+          '--sway-from': '2deg',
+          '--sway-to': '-2deg',
+          animationDelay: '0.2s',
+        }}
+      >
         <img
           src={flowerGarland}
           alt="Flower Garland"
@@ -225,7 +194,7 @@ const WelcomeScreen = ({ onOpen }) => {
         {/* Content Container - Mobile */}
         <div className="absolute top-[18%] left-1/2 -translate-x-1/2 text-center flex flex-col gap-8" style={{ zIndex: 60 }}>
           {/* Vivah Nimantran Text */}
-          <div ref={headingRef}>
+          <div className={`${baseReveal} ${revealUpClass}`}>
             <h1 
               className="text-3xl sm:text-5xl"
               style={{ 
@@ -241,7 +210,7 @@ const WelcomeScreen = ({ onOpen }) => {
           {/* Names and Button */}
           <div className="flex flex-col items-center gap-4">
             {/* Couple Names - Mobile */}
-            <div ref={namesRef} className="flex flex-col items-center">
+            <div className={`flex flex-col items-center ${baseReveal} ${revealUpClass}`}>
               <p 
                 className="text-4xl sm:text-6xl"
                 style={{ 
@@ -276,9 +245,8 @@ const WelcomeScreen = ({ onOpen }) => {
             
             {/* Open Invitation Button - Mobile */}
             <button
-              ref={buttonRef}
               onClick={onOpen}
-              className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-colors duration-300"
+              className={`${baseReveal} ${revealScaleClass} ${contentVisible ? 'pulse-soft' : ''} px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg text-white bg-amber-700 hover:bg-amber-800 rounded-full shadow-lg hover:shadow-xl transition-colors duration-300`}
               style={{
                 fontFamily: "'Arya', sans-serif"
               }}
@@ -289,7 +257,10 @@ const WelcomeScreen = ({ onOpen }) => {
         </div>
 
         {/* Couple Photo - Mobile */}
-        <div ref={coupleRef} className="absolute bottom-[100px] sm:bottom-[120px] left-1/2 -translate-x-1/2 z-30">
+        <div
+          className="absolute bottom-[100px] sm:bottom-[120px] left-1/2 -translate-x-1/2 z-30 float-soft"
+          style={{ '--float-duration': '4.5s' }}
+        >
           <img
             src={couplePhoto}
             alt="Couple"
@@ -420,7 +391,18 @@ const WelcomeScreen = ({ onOpen }) => {
         </div>
 
         {/* Tree - Bottom Left */}
-        <div ref={treeLeftRef} className="fixed" style={{ zIndex: 38, left: '-160px', bottom: '-100px' }}>
+        <div
+          className="fixed sway-soft"
+          style={{
+            zIndex: 38,
+            left: '-160px',
+            bottom: '-100px',
+            '--sway-origin': 'bottom center',
+            '--sway-duration': '3.2s',
+            '--sway-from': '0deg',
+            '--sway-to': '-4deg',
+          }}
+        >
           <img
             src={tree}
             alt="Tree"
@@ -429,7 +411,18 @@ const WelcomeScreen = ({ onOpen }) => {
         </div>
 
         {/* Tree - Bottom Right */}
-        <div ref={treeRightRef} className="fixed" style={{ zIndex: 38, right: '-160px', bottom: '-100px' }}>
+        <div
+          className="fixed sway-soft"
+          style={{
+            zIndex: 38,
+            right: '-160px',
+            bottom: '-100px',
+            '--sway-origin': 'bottom center',
+            '--sway-duration': '3.4s',
+            '--sway-from': '0deg',
+            '--sway-to': '4deg',
+          }}
+        >
           <img
             src={tree}
             alt="Tree"

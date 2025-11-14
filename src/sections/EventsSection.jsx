@@ -1,17 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import FloralDivider from '../components/FloralDivider';
 import CountdownTimer from '../components/CountdownTimer';
 import mandala from '../assets/svgs/mandala.svg';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const EventsSection = () => {
-  const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const timerRef = useRef(null);
-  const eventRefs = useRef([]);
   const events = [
     {
       day: 'बुधवार',
@@ -61,71 +53,24 @@ const EventsSection = () => {
     },
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading animation
-      gsap.from(headingRef.current, {
-        opacity: 0,
-        y: -50,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Timer animation
-      gsap.from(timerRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.8,
-        delay: 0.3,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Stagger event items
-      eventRefs.current.forEach((eventEl, index) => {
-        if (eventEl) {
-          gsap.from(eventEl, {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: eventEl,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          });
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div 
-      ref={sectionRef}
       className="w-full py-12" 
       style={{ backgroundColor: '#DC3545' }}
     >
       {/* Section Heading */}
       <div className="text-center mb-16">
         <h2 
-          ref={headingRef}
+          data-aos="fade-down"
+          data-aos-duration="1500"
           className="text-4xl md:text-5xl text-white mb-8"
         >
           मांगलिक पलों का सफर
         </h2>
-        <div ref={timerRef}>
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="1500"
+        >
           <CountdownTimer weddingDate="2025-11-30T10:30:00" />
         </div>
       </div>
@@ -135,7 +80,9 @@ const EventsSection = () => {
         {events.map((event, index) => (
           <React.Fragment key={index}>
             <div 
-              ref={el => eventRefs.current[index] = el}
+              data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
+              data-aos-duration="1500"
+              data-aos-delay={index * 100}
               className="w-full relative"
             >
             {/* Odd rows: content left aligned, mandala on right */}

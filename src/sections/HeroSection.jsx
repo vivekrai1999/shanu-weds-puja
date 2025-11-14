@@ -1,6 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import frameLeft from '../assets/images/frame-left.webp';
 import frameRight from '../assets/images/frame-right.webp';
 import womenLeft from '../assets/images/women-left.webp';
@@ -9,80 +7,10 @@ import CherryBlossom from '../components/CherryBlossom';
 import FlowerGarden from '../components/FlowerGarden';
 import Butterflies from '../components/Butterflies';
 import '../styles/butterfly.css';
-
-gsap.registerPlugin(ScrollTrigger);
-
+ 
 const HeroSection = () => {
-  const sectionRef = useRef(null);
-  const omRef = useRef(null);
-  const groomRef = useRef(null);
-  const sangRef = useRef(null);
-  const brideRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Om Shri Ganeshay Namah
-      gsap.from(omRef.current, {
-        opacity: 0,
-        y: -30,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Groom section slide from left
-      gsap.from(groomRef.current, {
-        opacity: 0,
-        x: -100,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Sang separator scale
-      gsap.from(sangRef.current, {
-        opacity: 0,
-        scale: 0,
-        duration: 0.8,
-        delay: 0.6,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Bride section slide from right
-      gsap.from(brideRef.current, {
-        opacity: 0,
-        x: 100,
-        duration: 1,
-        delay: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div 
-      ref={sectionRef}
       className="hero-layout-section w-full h-[900px] relative overflow-hidden bg-white"
     >
       {/* Cherry Blossom Effect */}
@@ -100,7 +28,8 @@ const HeroSection = () => {
       <div className="w-full h-full flex flex-col items-center justify-start pt-4 pb-48 md:pt-6 md:pb-40 px-4 relative">
         {/* Om Shree Ganeshay Namah */}
         <div 
-          ref={omRef}
+          data-aos="fade-down"
+          data-aos-duration="1500"
           className="w-full text-center mb-12 md:mb-16"
         >
           <p className="text-2xl md:text-3xl" style={{ fontFamily: "'Rozha One', serif", color: '#DC3545' }}>
@@ -124,7 +53,8 @@ const HeroSection = () => {
         <div className="w-full max-w-4xl flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 z-10">
           {/* Groom Section */}
           <div 
-            ref={groomRef}
+            data-aos="fade-right"
+            data-aos-duration="2000"
             className="flex flex-col gap-4 w-full lg:w-auto"
           >
             <div className="text-center">
@@ -143,7 +73,8 @@ const HeroSection = () => {
 
           {/* Sang Separator */}
           <div 
-            ref={sangRef}
+            data-aos="zoom-in"
+            data-aos-duration="1500"
             className="text-center flex items-center gap-4"
           >
             <div className="h-px w-20 bg-gradient-to-r from-transparent to-gray-400"></div>
@@ -153,7 +84,8 @@ const HeroSection = () => {
 
           {/* Bride Section */}
           <div 
-            ref={brideRef}
+            data-aos="fade-left"
+            data-aos-duration="2000"
             className="flex flex-col gap-4 w-full lg:w-auto"
           >
             <div className="text-center">

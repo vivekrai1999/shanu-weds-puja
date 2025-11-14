@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { TweenLite, Power1 } from 'gsap';
-import 'gsap/MorphSVGPlugin';
+import React, { useCallback, useEffect, useRef } from 'react';
 
-// Utility functions
 const random = (min, max) => {
   if (max == null) {
     max = min;
@@ -11,124 +8,85 @@ const random = (min, max) => {
   return min + Math.random() * (max - min);
 };
 
-const randomSign = () => {
-  return Math.random() < 0.5 ? 1 : -1;
-};
-
 const createSVG = (type, parent) => {
-  const xmlns = "http://www.w3.org/2000/svg";
+  const xmlns = 'http://www.w3.org/2000/svg';
   const node = document.createElementNS(xmlns, type);
-  parent && parent.appendChild(node);
+  if (parent) {
+    parent.appendChild(node);
+  }
   return node;
 };
 
-// Grass blade class
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
 class GrassBlade {
-  constructor(path, offset, width, height, minHeight, maxHeight, maxAngle, startAngle) {
+  constructor(path, config) {
     this.path = path;
+    this.config = config;
 
     this.width = random(4, 8);
-    this.height = random(150, maxHeight);
-    this.maxAngle = random(10, maxAngle);
-    this.angle = Math.random() * randomSign() * startAngle * Math.PI / 180;
+    this.height = random(config.minHeight, config.maxHeight);
+    this.maxAngle = random(10, config.maxAngle);
+    this.angle =
+      (Math.random() * (Math.random() < 0.5 ? -1 : 1) * config.startAngle * Math.PI) / 180;
 
-    const offsetX = 1.5;
-
-    // Start position
-    const sx = offset / 2 + random(width - offset);
-    const sy = height;
-
-    // Curvature
-    const csx = sx - offsetX;
+    const sx = config.offset / 2 + random(Math.max(0, config.width - config.offset));
+    const sy = config.height;
+    const csx = sx - 1.5;
     const csy = sy - this.height / (Math.random() < 0.5 ? 1 : 2);
-    // Parallel point
     const psx = csx;
     const psy = csy;
-
     const dx = sx + this.width;
     const dy = sy;
+
     this.coords = [sx, sy, csx, csy, psx, psy, dx, dy];
 
-    this.growing = false;
-    this.morphed = true; // Start already morphed - no grow animation
-
-    this.start = performance.now();
-    this.elapsed = 0;
-
-    this.height_ = this.height;
-    // Keep the original height - no need to change it
-    // this.height = random(200, Math.min(500, this.height));
-
     const ambient = 0.85;
-
     const color = [
       Math.floor(random(16, 48) * ambient),
       Math.floor(random(100, 255) * ambient),
-      Math.floor(random(16, 48) * ambient)
+      Math.floor(random(16, 48) * ambient),
     ];
+    this.color = `rgb(${color.join(',')})`;
 
-    // Start with full grass shape instead of small square
-    const tip = Math.sin(0);
-    const th = this.angle + Math.PI / 2 + tip * Math.PI / 180 * (this.maxAngle * Math.cos(0));
-    const px = sx + this.width + this.height * Math.cos(th);
-    const py = sy - this.height * Math.sin(th);
-    
-    let d = `M${sx},${sy}`;
-    d += `C${sx},${sy},${csx},${csy},${px},${py}`;
-    d += `C${px},${py},${psx},${psy},${dx},${dy}z`;
+    this.swaySpeed = random(0.0003, 0.0008);
+    this.swayOffset = random(0, Math.PI * 2);
+    this.growthProgress = 0;
+    this.growthSpeed = random(0.00015, 0.0004);
 
-    TweenLite.set(path, { fill: `rgb(${color})`, attr: { d } });
+    this.update(0, 16);
   }
 
-  rise() {
-    this.morphed = true;
-    this.growing = false;
-    this.elapsed = performance.now() - this.start;
-    TweenLite.to(this, random(2.5, 3.5), { height: this.height_, ease: Power1.easeInOut });
-  }
+  update(time, delta) {
+    if (this.growthProgress < 1) {
+      this.growthProgress = Math.min(1, this.growthProgress + this.growthSpeed * delta);
+    }
 
-  morph(morphSVG) {
-    const time = random(1.5, 3.5);
-    const delay = random(0.5, 4.5);
-
-    this.growing = true;
-
-    TweenLite.to(this.path, time, { morphSVG, delay, onComplete: () => this.rise() });
-  }
-
-  update(time) {
-    if (this.growing) return;
-
-    time -= this.elapsed;
+    const easedGrowth = easeOutCubic(this.growthProgress);
     const coords = this.coords;
-    const tip = Math.sin(time * 0.0007);
-    const th = this.angle + Math.PI / 2 + tip * Math.PI / 180 * (this.maxAngle * Math.cos(time * 0.0002));
-    const px = coords[0] + this.width + this.height * Math.cos(th);
-    const py = coords[1] - this.height * Math.sin(th);
+    const sway = Math.sin(time * this.swaySpeed + this.swayOffset);
+    const angle =
+      this.angle +
+      Math.PI / 2 +
+      (sway * Math.PI * (this.maxAngle * easedGrowth)) / 180;
+    const px = coords[0] + this.width + (this.height * easedGrowth) * Math.cos(angle);
+    const py = coords[1] - (this.height * easedGrowth) * Math.sin(angle);
 
     let d = `M${coords[0]},${coords[1]}`;
     d += `C${coords[0]},${coords[1]},${coords[2]},${coords[3]},${px},${py}`;
     d += `C${px},${py},${coords[4]},${coords[5]},${coords[6]},${coords[7]}z`;
 
-    if (!this.morphed) {
-      this.morph(d);
-      this.start = performance.now();
-    } else {
-      this.path.setAttribute("d", d);
-    }
+    this.path.setAttribute('d', d);
+    this.path.setAttribute('fill', this.color);
   }
 
   destroy() {
-    TweenLite.killTweensOf(this);
-    TweenLite.killTweensOf(this.path);
-
     if (this.path && this.path.parentElement) {
       this.path.parentElement.removeChild(this.path);
     }
   }
 }
 
-// Main Grass component
 const Grass = ({
   width = 800,
   height = 600,
@@ -139,76 +97,88 @@ const Grass = ({
   maxAngle = 20,
   startAngle = 40,
   showButton = true,
-  buttonText = "RISE UP",
+  buttonText = 'RISE UP',
   containerStyle = {},
-  buttonStyle = {}
+  buttonStyle = {},
 }) => {
   const stageRef = useRef(null);
   const bladesRef = useRef([]);
-  const startTimeRef = useRef(performance.now());
   const animationFrameRef = useRef(null);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const lastTimeRef = useRef(0);
 
   const calculatedMaxHeight = maxHeight || height * 0.8;
 
-  const initGrass = () => {
-    if (!stageRef.current) return;
-
-    // Destroy existing blades
-    bladesRef.current.forEach(blade => blade.destroy());
+  const destroyBlades = useCallback(() => {
+    bladesRef.current.forEach((blade) => blade.destroy());
     bladesRef.current = [];
+  }, []);
 
-    // Create new blades
-    for (let i = 0; i < totalBlades; i++) {
-      const path = createSVG("path", stageRef.current);
-      bladesRef.current[i] = new GrassBlade(
-        path,
+  const initGrass = useCallback(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    destroyBlades();
+    stage.innerHTML = '';
+
+    for (let i = 0; i < totalBlades; i += 1) {
+      const path = createSVG('path', stage);
+      bladesRef.current[i] = new GrassBlade(path, {
         offset,
         width,
         height,
         minHeight,
-        calculatedMaxHeight,
+        maxHeight: calculatedMaxHeight,
         maxAngle,
-        startAngle
-      );
+        startAngle,
+      });
     }
 
-    setIsInitialized(true);
-  };
+    lastTimeRef.current = 0;
+  }, [
+    calculatedMaxHeight,
+    destroyBlades,
+    height,
+    maxAngle,
+    minHeight,
+    offset,
+    startAngle,
+    totalBlades,
+    width,
+  ]);
 
-  const render = () => {
-    const elapsed = performance.now() - startTimeRef.current;
-
-    if (bladesRef.current.length) {
-      for (let i = 0; i < totalBlades; i++) {
-        bladesRef.current[i]?.update(elapsed);
+  const render = useCallback(
+    (time) => {
+      if (!lastTimeRef.current) {
+        lastTimeRef.current = time;
       }
-    }
+      const delta = time - lastTimeRef.current;
+      lastTimeRef.current = time;
 
-    animationFrameRef.current = requestAnimationFrame(render);
-  };
+      bladesRef.current.forEach((blade) => blade.update(time, delta));
+      animationFrameRef.current = requestAnimationFrame(render);
+    },
+    [],
+  );
 
   useEffect(() => {
-    // Set stage dimensions
-    if (stageRef.current) {
-      TweenLite.set(stageRef.current, { width, height });
+    const stage = stageRef.current;
+    if (stage) {
+      stage.setAttribute('width', width);
+      stage.setAttribute('height', height);
+      stage.style.width = `${width}px`;
+      stage.style.height = `${height}px`;
     }
 
-    // Initialize grass
     initGrass();
-
-    // Start animation loop
     animationFrameRef.current = requestAnimationFrame(render);
 
-    // Cleanup
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      bladesRef.current.forEach(blade => blade.destroy());
-      bladesRef.current = [];
+      destroyBlades();
     };
-  }, [width, height, totalBlades, offset, minHeight, calculatedMaxHeight, maxAngle, startAngle]);
+  }, [destroyBlades, height, initGrass, render, width]);
 
   const handleRiseUp = () => {
     initGrass();
@@ -218,7 +188,7 @@ const Grass = ({
     height: '100vh',
     overflow: 'hidden',
     position: 'relative',
-    ...containerStyle
+    ...containerStyle,
   };
 
   const defaultStageStyle = {
@@ -227,7 +197,7 @@ const Grass = ({
     height: `${height}px`,
     top: '100%',
     left: '50%',
-    transform: 'translate(-50%, -100%)'
+    transform: 'translate(-50%, -100%)',
   };
 
   const defaultButtonStyle = {
@@ -241,7 +211,7 @@ const Grass = ({
     background: '#FFC107',
     color: '#555',
     cursor: 'pointer',
-    ...buttonStyle
+    ...buttonStyle,
   };
 
   const hudStyle = {
@@ -249,7 +219,7 @@ const Grass = ({
     top: 0,
     left: 0,
     padding: '15px',
-    zIndex: 10
+    zIndex: 10,
   };
 
   return (
@@ -272,11 +242,7 @@ const Grass = ({
           </button>
         </div>
       )}
-      <svg
-        id="stage"
-        ref={stageRef}
-        style={defaultStageStyle}
-      />
+      <svg id="stage" ref={stageRef} style={defaultStageStyle} />
     </div>
   );
 };

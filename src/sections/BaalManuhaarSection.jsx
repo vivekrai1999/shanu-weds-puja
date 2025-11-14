@@ -1,51 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import radha from '../assets/svgs/radha.svg';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const BaalManuhaarSection = () => {
-  const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const quoteRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading animation
-      gsap.from(headingRef.current, {
-        opacity: 0,
-        y: -50,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Quote animation
-      gsap.from(quoteRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div 
-      ref={sectionRef}
       className="w-full pt-8 pb-32 px-4 relative" 
       style={{ backgroundColor: '#FFC300' }}
     >
@@ -62,7 +20,8 @@ const BaalManuhaarSection = () => {
       {/* Section Heading */}
       <div className="text-center mb-10 relative z-10">
         <h2 
-          ref={headingRef}
+          data-aos="fade-down"
+          data-aos-duration="1500"
           className="text-4xl md:text-5xl mb-8"
           style={{ fontFamily: "'Rozha One', serif", color: '#DC3545' }}
         >
@@ -72,7 +31,8 @@ const BaalManuhaarSection = () => {
 
       {/* Children Names */}
       <div 
-        ref={quoteRef}
+        data-aos="fade-up"
+        data-aos-duration="1500"
         className="max-w-4xl mx-auto text-center relative z-10"
       >
         <p className="text-xl md:text-2xl" style={{ color: '#1A1A1A' }}>

@@ -1,14 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import FloralDivider from '../components/FloralDivider';
 import { emojiBlast } from '../utils/confetti';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const PeopleSection = () => {
-  const sectionRef = useRef(null);
-  const groupRefs = useRef([]);
   const peopleGroups = [
     {
       title: 'विनीत',
@@ -69,59 +63,8 @@ const PeopleSection = () => {
     },
   ];
 
-  useEffect(() => {
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      const ctx = gsap.context(() => {
-        // Filter out null refs
-        const validRefs = groupRefs.current.filter(el => el !== null);
-        
-        console.log('People Section - Valid refs:', validRefs.length);
-        
-        validRefs.forEach((groupEl, index) => {
-          const isEven = index % 2 === 0;
-          
-          // Set initial state
-          gsap.set(groupEl, {
-            opacity: 0,
-            x: isEven ? -100 : 100,
-            scale: 0.9,
-          });
-          
-          // Create animation
-          gsap.to(groupEl, {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: groupEl,
-              start: 'top 85%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse',
-              markers: false, // Set to true for debugging
-              onEnter: () => console.log(`Group ${index} entered`),
-            },
-          });
-        });
-        
-        // Refresh ScrollTrigger after setup
-        ScrollTrigger.refresh();
-      }, sectionRef);
-
-      return () => {
-        ctx.revert();
-      };
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div 
-      ref={sectionRef}
-
       className="w-full pt-6 pb-32 px-4" 
       style={{ backgroundColor: '#DC3545' }}
     >
@@ -130,11 +73,9 @@ const PeopleSection = () => {
         {peopleGroups.map((group, index) => (
           <React.Fragment key={index}>
             <div 
-              ref={el => {
-                if (el && !groupRefs.current.includes(el)) {
-                  groupRefs.current[index] = el;
-                }
-              }}
+              data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
+              data-aos-duration="1500"
+              data-aos-delay={index * 100}
               className="flex-1 min-w-[280px] max-w-[400px]"
             >
               {/* Subheading */}

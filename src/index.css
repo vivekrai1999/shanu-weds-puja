@@ -64,3 +64,53 @@ h1, h2, h3, h4, h5, h6 {
 .animate-bounce-diagonal {
   animation: bounce-diagonal 1s ease-in-out infinite;
 }
+
+/* Shared utility animations */
+@keyframes float-soft {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.float-soft {
+  animation: float-soft var(--float-duration, 4.5s) ease-in-out infinite;
+}
+
+@keyframes sway-soft {
+  0% {
+    transform: rotate(var(--sway-from, -3deg));
+  }
+  50% {
+    transform: rotate(var(--sway-to, 3deg));
+  }
+  100% {
+    transform: rotate(var(--sway-from, -3deg));
+  }
+}
+
+.sway-soft {
+  animation: sway-soft var(--sway-duration, 3s) ease-in-out infinite;
+  transform-origin: var(--sway-origin, bottom center);
+}
+
+@keyframes pulse-soft {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-soft {
+  animation: pulse-soft var(--pulse-duration, 2.2s) ease-in-out infinite alternate;
+}
